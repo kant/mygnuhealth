@@ -15,11 +15,16 @@ Kirigami.Page {
             Layout.fillHeight: true
             fillMode: Image.PreserveAspectFit
             source: "../images/my-gnu-health.png"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: pageStack.push(Qt.resolvedUrl("PageLogin.qml"))
+            }
+
         }
     }
 
     actions.main: Kirigami.Action {
-        text: qsTr("Log in")
-        onTriggered: pageStack.push(Qt.resolvedUrl("PageLogin.qml"))
+        text: qsTr("Setup")
+        onTriggered: pageStack.push(Qt.resolvedUrl("PageSetup.qml"))
     }
 }
