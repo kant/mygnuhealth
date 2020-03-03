@@ -28,13 +28,22 @@ title: qsTr("Login")
 
         TextField {
             id: txtFedacct
-            Kirigami.FormData.label: qsTr("GH Acct")
+            placeholderText: qsTr("GH Federation Account")
+            Kirigami.FormData.label: qsTr("Acct")
         }
 
         TextField {
             id: txtPassword
+            placeholderText: qsTr("Password")
             Kirigami.FormData.label: qsTr("Password")
             echoMode: TextInput.Password
+            onAccepted: {
+                logininfo.accountinfo.account = txtFedacct.text
+                logininfo.accountinfo.password = txtPassword.text
+
+                fedlogin.getCredentials(logininfo.accountinfo.account,
+                    logininfo.accountinfo.password);
+            }
         }
 
         Button {
