@@ -33,12 +33,17 @@ from PySide2.QtCore import QObject, QUrl, Signal, Slot
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from fedlogin import FederationLogin
 
+from myghconf import verify_installation_status
+
 VERSION_MAJOR = 0
 VERSION_MINOR = 1
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    # Initial installation check
+    verify_installation_status()
 
     # Register FedLogin to use it QML
     qmlRegisterType(FederationLogin, "FedLogin", VERSION_MAJOR, VERSION_MINOR,
