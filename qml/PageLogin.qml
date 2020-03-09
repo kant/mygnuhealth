@@ -20,10 +20,17 @@ title: qsTr("Login")
         id: content
         anchors.fill: parent
 
+        Image {
+            Layout.fillWidth: true
+            fillMode: Image.PreserveAspectFit
+            source: "../images/dialog-password.png"
+
+        }
+
         TextField {
             id: txtKey
             placeholderText: qsTr("Secret Key")
-            Kirigami.FormData.label: qsTr("Key")
+            // Kirigami.FormData.label: qsTr("Key")
             echoMode: TextInput.Password
             onAccepted: {
                 ghlogin.getKey(txtKey.text);
@@ -31,12 +38,15 @@ title: qsTr("Login")
         }
 
         Button {
+            id: buttonKey
+            anchors.horizontalCenter: txtKey.horizontalCenter
+            anchors.top: txtKey.bottom
             text: qsTr("Enter")
             flat: false
-            Layout.alignment: Qt.AlignHCenter
             onClicked: {
                 ghlogin.getKey(txtKey.text);
             }
+
         }
     }
 }
