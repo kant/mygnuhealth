@@ -32,6 +32,7 @@ title: qsTr("Login")
             placeholderText: qsTr("Secret Key")
             // Kirigami.FormData.label: qsTr("Key")
             echoMode: TextInput.Password
+            focus: true
             onAccepted: {
                 ghlogin.getKey(txtKey.text);
             }
