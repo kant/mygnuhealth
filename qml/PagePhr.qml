@@ -72,8 +72,9 @@ title: qsTr("GNU Health")
     actions.main: Kirigami.Action {
         text: qsTr("Logout")
         onTriggered: {
+            // Clear the stack and go to the initial page
             pageStack.clear()
-            // TODO: Include initial page
+            pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
         }
     }
 }
