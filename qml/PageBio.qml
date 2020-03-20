@@ -1,42 +1,42 @@
 import QtQuick 2.7
-import org.kde.kirigami 2.5 as Kirigami
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import org.kde.kirigami 2.5 as Kirigami
 
 
 Kirigami.Page
 {
-id: phrpage
-title: qsTr("GNU Health")
+id: biopage
+title: qsTr("GNU Health - BIO")
     ColumnLayout {
         anchors.fill: parent
         Rectangle {
             width: 350
-            height: 120
+            height: 100
             color: "#cd5c5c"
             border.color: "grey"
             border.width: 5
             radius: 10
             Text {
-                text: "BIO"
+                text: "Blood Pressure"
                 font.pointSize: 30
                 anchors.centerIn: parent
                 }
             MouseArea {
                 anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBio.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("PageBloodpressure.qml"))
             }
         }
 
         Rectangle {
             width: 350
-            height: 120
+            height: 100
             color: "#008b8b"
             border.color: "grey"
             border.width: 5
             radius: 10
             Text {
-                text: "PSYCHO"
+                text: "Glucose level"
                 font.pointSize: 30
                 anchors.centerIn: parent
                 }
@@ -44,13 +44,13 @@ title: qsTr("GNU Health")
 
         Rectangle {
             width: 350
-            height: 120
+            height: 100
             color: "#deb887"
             border.color: "grey"
             border.width: 5
             radius: 10
             Text {
-                text: "SOCIAL"
+                text: "Weight"
                 font.pointSize: 30
                 anchors.centerIn: parent
                 }
@@ -58,13 +58,13 @@ title: qsTr("GNU Health")
 
         Rectangle {
             width: 350
-            height: 60
+            height: 100
             color: "#ff7f50"
             border.color: "grey"
             border.width: 5
             radius: 10
             Text {
-                text: "EMERGENCY"
+                text: "Osat"
                 font.pointSize: 20
                 anchors.centerIn: parent
                 }
