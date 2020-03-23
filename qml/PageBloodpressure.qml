@@ -2,11 +2,20 @@ import QtQuick 2.7
 import org.kde.kirigami 2.5 as Kirigami
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import BloodPressure 0.1
 
 Kirigami.Page
 {
 id: bloodpressurePage
 title: qsTr("Blood Pressure Monitor")
+
+    BloodPressure { // BloodPressure object registered at main.py
+        id: bloodpressure
+        onSetOK: {
+            pageStack.pop()
+        }
+    }
+
 
     Kirigami.FormLayout {
         id: content
@@ -44,6 +53,10 @@ title: qsTr("Blood Pressure Monitor")
             anchors.top: txtDiastolic.bottom
             text: qsTr("Done")
             flat: false
+            onClicked: {
+                bloodpressure.getvals(txtSystolic.text, txtDiastolic.text);
+            }
+
         }
     }
 }
