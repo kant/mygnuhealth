@@ -23,12 +23,11 @@ title: qsTr("Blood Pressure Monitor")
                 implicitWidth: 40
                 implicitHeight: 200
                 }
-
             }
 
         TextField {
             id: txtDiastolic
-            placeholderText: qsTr("Dias")
+            placeholderText: qsTr("Dia")
             maximumLength: 3
             font.pointSize: 50
             font.bold: true
