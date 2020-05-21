@@ -8,9 +8,9 @@ class BloodPressure(QObject):
 
     db = TinyDB(dbfile)
 
-    @Slot (int, int)
-    def getvals(self,systolic, diastolic):
-        print (systolic, diastolic)
+    @Slot (int, int, int)
+    def getvals(self,systolic, diastolic, rate):
+        print (systolic, diastolic, rate)
         self.setOK.emit()
 
     # Signal to emit to QML if the blood pressure values were stored correctly

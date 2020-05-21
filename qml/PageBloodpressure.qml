@@ -47,14 +47,28 @@ title: qsTr("Blood Pressure Monitor")
             }
         }
 
+        TextField {
+            id: txtRate
+            placeholderText: qsTr("Rate")
+            maximumLength: 3
+            font.pointSize: 20
+            font.bold: true
+            horizontalAlignment: TextInput.AlignHCenter
+            background: Rectangle {
+                implicitWidth: 20
+                implicitHeight: 100
+            }
+        }
+
         Button {
             id: buttonSetBP
             anchors.horizontalCenter: txtDiastolic.horizontalCenter
-            anchors.top: txtDiastolic.bottom
+            anchors.top: txtRate.bottom
             text: qsTr("Done")
             flat: false
             onClicked: {
-                bloodpressure.getvals(txtSystolic.text, txtDiastolic.text);
+                bloodpressure.getvals(txtSystolic.text, txtDiastolic.text,
+                                      txtRate.text);
             }
 
         }
