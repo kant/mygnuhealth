@@ -2,15 +2,21 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.5 as Kirigami
-
+import GHBio 0.1
 
 Kirigami.Page
 {
 id: biopage
 title: qsTr("GNU Health - BIO")
+
+    GHBio { // GHBio object registered at main.py
+        id: ghbio
+    }
+
     ColumnLayout {
         anchors.fill: parent
         Rectangle {
+            id:bp
             width: 350
             height: 100
             color: "#cd5c5c"
@@ -18,9 +24,18 @@ title: qsTr("GNU Health - BIO")
             border.width: 5
             radius: 10
             Text {
+                id: txtbpHeader
                 text: "Blood Pressure"
                 font.pointSize: 30
                 anchors.centerIn: parent
+                }
+            Text {
+                id: txtBp
+                property var bpinfo: ghbio.bp
+                text: bpinfo
+                font.pointSize: 10
+                anchors.horizontalCenter: txtbpHeader.horizontalCenter
+                anchors.top: txtbpHeader.bottom
                 }
             MouseArea {
                 anchors.fill: parent

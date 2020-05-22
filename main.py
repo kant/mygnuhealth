@@ -33,6 +33,8 @@ from PySide2.QtCore import QObject, QUrl, Signal, Slot
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from fedlogin import FederationLogin
 from ghlogin import GHLogin
+from bio import GHBio
+
 from bloodpressure import BloodPressure
 
 from myghconf import verify_installation_status
@@ -43,18 +45,22 @@ if __name__ == "__main__":
     # Initial installation check
     verify_installation_status()
 
-    # Register FedLogin to use it QML
+    # Register FedLogin to use in QML
     qmlRegisterType(FederationLogin, "FedLogin", 0, 1,
                     "FedLogin")
 
 
-    # Register BloodPressure to use it QML
+    # Register BloodPressure to use in QML
     qmlRegisterType(BloodPressure, "BloodPressure", 0, 1,
                     "BloodPressure")
 
-    # Register GHLogin to use it QML
+    # Register GHLogin to use in QML
     qmlRegisterType(GHLogin, "GHLogin", 0, 1,
                     "GHLogin")
+
+    # Register GHBio to use in QML
+    qmlRegisterType(GHBio, "GHBio", 0, 1,
+                    "GHBio")
 
     engine = QQmlApplicationEngine()
 

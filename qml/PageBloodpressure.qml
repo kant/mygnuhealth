@@ -12,7 +12,7 @@ title: qsTr("Blood Pressure Monitor")
     BloodPressure { // BloodPressure object registered at main.py
         id: bloodpressure
         onSetOK: {
-            pageStack.pop()
+            pageStack.pop() // Return to main monitor page once values are stored
         }
     }
 
