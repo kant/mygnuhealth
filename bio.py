@@ -7,7 +7,7 @@ class GHBio(QObject):
     def __init__(self):
         QObject.__init__(self)
 
-        self.current_bp = "110 / 70"
+        self.current_bp = ""
 
     db = TinyDB(dbfile)
 
@@ -21,7 +21,7 @@ class GHBio(QObject):
     def getBP(self):
         bp,hr = self.read_bp()
         return (str(bp['systolic']) + '/' + str(bp['diastolic']) + \
-            ' (hr' + (str(hr['heart_rate']) + ')'))
+            ' (HR: ' + (str(hr['heart_rate']) + ')'))
 
     def setBP(self, bp):
         self.current_bp = bp
