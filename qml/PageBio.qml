@@ -14,79 +14,176 @@ title: qsTr("GNU Health - BIO")
     }
 
     ColumnLayout {
-        anchors.fill: parent
+        spacing: 5
+
+        // Blood pressure / Heart Rate
         Rectangle {
-            id:bp
-            width: 350
-            height: 100
-            color: "#cd5c5c"
-            border.color: "grey"
-            border.width: 5
-            radius: 10
-            Text {
-                id: txtbpHeader
-                text: "Blood Pressure"
-                font.pointSize: 30
-                anchors.centerIn: parent
+            id:bpitem
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+
+            Rectangle {
+                id:bprectangle
+                width: 100
+                height: 100
+
+                Image {
+                    id: bpIcon
+                    source: "../images/bp-icon.svg"
+                    anchors.fill: parent
+                    fillMode:Image.PreserveAspectFit
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: pageStack.push(Qt.resolvedUrl("PageBloodpressure.qml"))
+                    }
                 }
-            Text {
-                id: txtBp
-                property var bpinfo: ghbio.bp
-                text: bpinfo
-                font.pointSize: 10
-                anchors.horizontalCenter: txtbpHeader.horizontalCenter
-                anchors.top: txtbpHeader.bottom
-                }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBloodpressure.qml"))
+            }
+            Rectangle {
+                id:bphistoryrectangle
+                width: 250
+                height: 100
+                // Layout.preferredWidth does not work here.
+                anchors.left: bprectangle.right
+                    Text {
+                        id: txtBp
+                        anchors.centerIn: parent
+                        property var bpinfo: ghbio.bp
+                        text: bpinfo
+                        color: "#108498"
+                        font.pointSize: 12
+                    }
+
             }
         }
 
-        Rectangle {
-            width: 350
-            height: 100
-            color: "#008b8b"
-            border.color: "grey"
-            border.width: 5
-            radius: 10
-            Text {
-                text: "Glucose level"
-                font.pointSize: 30
-                anchors.centerIn: parent
-                }
-            }
+        Kirigami.Separator {
+            Layout.fillWidth: true
+            height: 15
+            visible: true
+        }
+
+        // GLUCOSE
 
         Rectangle {
-            width: 350
-            height: 100
-            color: "#deb887"
-            border.color: "grey"
-            border.width: 5
-            radius: 10
-            Text {
-                text: "Weight"
-                font.pointSize: 30
-                anchors.centerIn: parent
-                }
+            id:glucoseitem
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+            Rectangle {
+                id:glucoserectangle
+                width: 100
+                height: 100
+
+                Image {
+                    id: glucoseIcon
+                    source: "../images/glucose-icon.svg"
+                    anchors.fill: parent
+                    fillMode:Image.PreserveAspectFit
+               }
             }
+            Rectangle {
+                id:glucosehistoryrectangle
+                width: 250
+                height: 100
+                anchors.left: glucoserectangle.right
+                    Text {
+                        id: txtGlucose
+                        anchors.centerIn: parent
+                        // property var glucoseinfo: ghbio.glucose
+                        text: "96 mg/dL (TODO)"
+                        color: "#108498"
+                        font.pointSize: 12
+                    }
+
+            }
+        }
+
+        Kirigami.Separator {
+            Layout.fillWidth: true
+            height: 15
+            visible: true
+        }
+
+        // WEIGHT
 
         Rectangle {
-            width: 350
-            height: 100
-            color: "#ff7f50"
-            border.color: "grey"
-            border.width: 5
-            radius: 10
-            Text {
-                text: "Osat"
-                font.pointSize: 20
-                anchors.centerIn: parent
-                }
+            id:weightitem
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+            Rectangle {
+                id:weightrectangle
+                width: 100
+                height: 100
+
+                Image {
+                    id: weightIcon
+                    source: "../images/weight-icon.svg"
+                    anchors.fill: parent
+                    fillMode:Image.PreserveAspectFit
+               }
             }
+            Rectangle {
+                id:weighthistoryrectangle
+                width: 250
+                height: 100
+                anchors.left: weightrectangle.right
+                    Text {
+                        id: txtWeight
+                        anchors.centerIn: parent
+                        // property var weightinfo: ghbio.weight
+                        text: "90.3 Kg (TODO)"
+                        color: "#108498"
+                        font.pointSize: 12
+                    }
+
+            }
+        }
+
+        Kirigami.Separator {
+            Layout.fillWidth: true
+            height: 15
+            visible: true
+        }
+
+        // OSAT
+
+        Rectangle {
+            id:osatitem
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+            Rectangle {
+                id:osatrectangle
+                width: 100
+                height: 100
+
+                Image {
+                    id: osatIcon
+                    source: "../images/osat-icon.svg"
+                    anchors.fill: parent
+                    fillMode:Image.PreserveAspectFit
+               }
+            }
+            Rectangle {
+                id:osathistoryrectangle
+                width: 250
+                height: 100
+                anchors.left: osatrectangle.right
+                    Text {
+                        id: txtOsat
+                        anchors.centerIn: parent
+                        // property var osatinfo: ghbio.osat
+                        text: "90.3 Kg (TODO)"
+                        color: "#108498"
+                        font.pointSize: 12
+                    }
+
+            }
+        }
 
     }
-
 
     actions.main: Kirigami.Action {
         text: qsTr("Logout")

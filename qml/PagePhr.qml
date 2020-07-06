@@ -7,72 +7,98 @@ import QtQuick.Layouts 1.3
 Kirigami.Page
 {
 id: phrpage
-title: qsTr("GNU Health")
     ColumnLayout {
-        anchors.fill: parent
+        spacing: 15
         Rectangle {
-            width: 350
-            height: 120
-            color: "#cd5c5c"
-            border.color: "grey"
-            border.width: 5
+            id:biorectangle
+            color: "#108498"
+            Layout.alignment: Qt.AlignCenter
+
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
             radius: 10
-            Text {
-                text: "BIO"
-                font.pointSize: 30
-                anchors.centerIn: parent
-                }
-            MouseArea {
+
+            Image {
+                id: bioIcon
                 anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBio.qml"))
+                source: "../images/bio-icon.svg"
+                fillMode:Image.PreserveAspectFit
             }
+            MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("PageBio.qml"))
+            }
+        }
+        Rectangle {
+            id:psychorectangle
+            color: "#108498"
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+
+            radius: 10
+
+            Image {
+                id: psychoIcon
+                anchors.fill: parent
+                source: "../images/psycho-icon.svg"
+                fillMode:Image.PreserveAspectFit
+            }
+            /*
+            MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("PagePsycho.qml"))
+            }
+            */
         }
 
         Rectangle {
-            width: 350
-            height: 120
-            color: "#008b8b"
-            border.color: "grey"
-            border.width: 5
+            id:socialrectangle
+            color: "#108498"
+            Layout.alignment: Qt.AlignCenter
+
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
             radius: 10
-            Text {
-                text: "PSYCHO"
-                font.pointSize: 30
-                anchors.centerIn: parent
-                }
+
+            Image {
+                id: socialIcon
+                anchors.fill: parent
+                source: "../images/social-icon.svg"
+                fillMode:Image.PreserveAspectFit
             }
+            /*
+            MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("SocialPsycho.qml"))
+            }
+            */
+        }
 
         Rectangle {
-            width: 350
-            height: 120
-            color: "#deb887"
-            border.color: "grey"
-            border.width: 5
-            radius: 10
-            Text {
-                text: "SOCIAL"
-                font.pointSize: 30
-                anchors.centerIn: parent
-                }
-            }
+            id:emergencyrectangle
+            color: "#108498"
+            Layout.alignment: Qt.AlignCenter
 
-        Rectangle {
-            width: 350
-            height: 60
-            color: "#ff7f50"
-            border.color: "grey"
-            border.width: 5
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
             radius: 10
-            Text {
-                text: "EMERGENCY"
-                font.pointSize: 20
-                anchors.centerIn: parent
-                }
+
+            Image {
+                id: emergencyIcon
+                anchors.fill: parent
+                source: "../images/emergency-icon.svg"
+                fillMode:Image.PreserveAspectFit
             }
+            /*
+            MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("SocialPsycho.qml"))
+            }
+            */
+        }
 
     }
-
-
     actions.main: Kirigami.Action {
         text: qsTr("Logout")
         onTriggered: {

@@ -29,9 +29,16 @@ import org.kde.kirigami 2.5 as Kirigami
 
 Kirigami.ApplicationWindow {
     visible: true
-    width: 400
-    height: 600
     title: qsTr("MyGNUHealth")
+
+    width: app.initialGeometry.width>=10 ? app.initialGeometry.width : Kirigami.Units.gridUnit * 45
+    height: app.initialGeometry.height>=10 ? app.initialGeometry.height : Kirigami.Units.gridUnit * 30
+
+    minimumWidth: 400
+    minimumHeight: 600
+
+    maximumWidth: 720
+    maximumHeight: 1440
 
     pageStack.initialPage: PageInitial {}
 
