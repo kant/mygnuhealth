@@ -8,7 +8,7 @@ Kirigami.Page
 {
 id: phrpage
     ColumnLayout {
-        spacing: 15
+        spacing: 10
         Rectangle {
             id:biorectangle
             color: "#108498"
@@ -70,7 +70,30 @@ id: phrpage
             /*
             MouseArea {
             anchors.fill: parent
-            onClicked: pageStack.push(Qt.resolvedUrl("SocialPsycho.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageSocial.qml"))
+            }
+            */
+        }
+
+        Rectangle {
+            id:documentsrectangle
+            color: "#108498"
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+
+            radius: 10
+
+            Image {
+                id: documentsIcon
+                anchors.fill: parent
+                source: "../images/documents-icon.svg"
+                fillMode:Image.PreserveAspectFit
+            }
+            /*
+            MouseArea {
+            anchors.fill: parent
+            onClicked: pageStack.push(Qt.resolvedUrl("PageDocuments.qml"))
             }
             */
         }

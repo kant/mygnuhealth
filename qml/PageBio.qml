@@ -53,6 +53,10 @@ title: qsTr("GNU Health - BIO")
                         color: "#108498"
                         font.pointSize: 12
                     }
+                MouseArea {
+                anchors.fill: parent
+                onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
+                }
 
             }
         }
@@ -137,7 +141,6 @@ title: qsTr("GNU Health - BIO")
                         color: "#108498"
                         font.pointSize: 12
                     }
-
             }
         }
 
@@ -175,7 +178,7 @@ title: qsTr("GNU Health - BIO")
                         id: txtOsat
                         anchors.centerIn: parent
                         // property var osatinfo: ghbio.osat
-                        text: "90.3 Kg (TODO)"
+                        text: "98% (TODO)"
                         color: "#108498"
                         font.pointSize: 12
                     }

@@ -20,7 +20,8 @@ class GHBio(QObject):
 
     def getBP(self):
         bp,hr = self.read_bp()
-        return (str(bp['systolic']) + '/' + str(bp['diastolic']) + \
+        return (str(bp['systolic']) + '/' + str(bp['diastolic']) +
+            str(bp['timestamp']) +
             ' (HR: ' + (str(hr['heart_rate']) + ')'))
 
     def setBP(self, bp):
