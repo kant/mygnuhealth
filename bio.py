@@ -20,9 +20,12 @@ class GHBio(QObject):
 
     def getBP(self):
         bp,hr = self.read_bp()
-        return (str(bp['systolic']) + '/' + str(bp['diastolic']) +
-            str(bp['timestamp']) +
-            ' (HR: ' + (str(hr['heart_rate']) + ')'))
+        dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
+        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+
+        bpobj = [str(date_repr), str(bp['systolic']), str(bp['diastolic']),
+                                     str(hr['heart_rate'])]
+        return bpobj
 
     def setBP(self, bp):
         self.current_bp = bp
@@ -33,4 +36,4 @@ class GHBio(QObject):
     bpChanged = Signal()
 
     # BP property to be accessed to and from QML and Python.
-    bp = Property(str, getBP, setBP, notify=bpChanged)
+    bp = Property("QVariantList", getBP, setBP, notify=bpChanged)

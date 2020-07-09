@@ -49,7 +49,11 @@ title: qsTr("GNU Health - BIO")
                         id: txtBp
                         anchors.centerIn: parent
                         property var bpinfo: ghbio.bp
-                        text: bpinfo
+                        property var bpdate: bpinfo[0]
+                        property var bpsystolic: bpinfo[1]
+                        property var bpdiastolic: bpinfo[2]
+                        property var hearrate: bpinfo[3]
+                        text: bpdate
                         color: "#108498"
                         font.pointSize: 12
                     }
