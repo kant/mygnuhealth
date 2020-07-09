@@ -40,23 +40,44 @@ title: qsTr("GNU Health - BIO")
                 }
             }
             Rectangle {
-                id:bphistoryrectangle
+                id:bphist
                 width: 250
                 height: 100
                 // Layout.preferredWidth does not work here.
                 anchors.left: bprectangle.right
+                property var bpinfo: ghbio.bp
+                property var bpdate: bpinfo[0]
+                property var bpsystolic: bpinfo[1]
+                property var bpdiastolic: bpinfo[2]
+                property var heartrate: bpinfo[3]
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 5
+                    Text {
+                        id: txtBpdate
+                        Layout.alignment: Qt.AlignCenter
+                        text: bphist.bpdate
+                        color: "#108498"
+                        font.pointSize: 10
+                    }
+
                     Text {
                         id: txtBp
-                        anchors.centerIn: parent
-                        property var bpinfo: ghbio.bp
-                        property var bpdate: bpinfo[0]
-                        property var bpsystolic: bpinfo[1]
-                        property var bpdiastolic: bpinfo[2]
-                        property var hearrate: bpinfo[3]
-                        text: bpdate
+                        Layout.alignment: Qt.AlignCenter
+                        text: bphist.bpsystolic + '/' + bphist.bpdiastolic
                         color: "#108498"
                         font.pointSize: 12
                     }
+
+                    Text {
+                        id: txtHr
+                        Layout.alignment: Qt.AlignCenter
+                        text: bphist.heartrate
+                        color: "#108498"
+                        font.pointSize: 12
+                    }
+                }
                 MouseArea {
                 anchors.fill: parent
                 onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
