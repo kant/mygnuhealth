@@ -49,7 +49,7 @@ title: qsTr("GNU Health - BIO")
                 property var bpdate: bpinfo[0]
                 property var bpsystolic: bpinfo[1]
                 property var bpdiastolic: bpinfo[2]
-                property var heartrate: bpinfo[3]
+                property var heartrate: bpinfo[3] + ' bpm'
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -65,8 +65,9 @@ title: qsTr("GNU Health - BIO")
                     Text {
                         id: txtBp
                         Layout.alignment: Qt.AlignCenter
-                        text: bphist.bpsystolic + '/' + bphist.bpdiastolic
+                        text: bphist.bpsystolic + ' / ' + bphist.bpdiastolic
                         color: "#108498"
+                        font.bold: true
                         font.pointSize: 12
                     }
 
