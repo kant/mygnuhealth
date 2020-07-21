@@ -2,6 +2,9 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from myghconf import dbfile
 import datetime
+import matplotlib.pyplot as plt
+import io
+import base64
 
 class GHBio(QObject):
     def __init__(self):
@@ -58,6 +61,46 @@ class GHBio(QObject):
 
         return bphrhist
 
+
+    def getBPplot(self):
+        # Retrieves all the history and packages into an array.
+        bphist,hrhist = self.read_bp()
+        bphrhist = []
+
+        """TODO:
+            The best would be to be able to pass the JSON dictionary
+            instead of an array of arrays to QVariantList.
+
+        """
+
+        bpsys = []
+        bpdia = []
+        hr = []
+        for element in bphist:
+            bpsys.append(element['systolic'])
+            bpdia.append(element['diastolic'])
+        bphrhist.append(bpsys)
+        bphrhist.append(bpdia)
+
+        for element in hrhist:
+            hr.append(element['heart_rate'])
+        bphrhist.append(hr)
+
+
+        fig, axs = plt.subplots(2)
+        axs[0].plot(bpsys)
+        axs[0].plot(bpdia)
+        # bp.plot(bpdia)
+        # fig.show()
+        # fig.autofmt_xdate()
+        axs[1].plot(hr)
+        holder = io.BytesIO()
+        fig.savefig(holder, format="png")
+        image = "data:image/png;base64," + base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return (image)
+
     def setBP(self, bp):
         self.current_bp = bp
         # Call the notifying signal
@@ -70,4 +113,4 @@ class GHBio(QObject):
     bp = Property("QVariantList", getBP, setBP, notify=bpChanged)
 
     # BP property to be accessed to and from QML and Python.
-    bphist = Property("QVariantList", getBPHist, setBP, notify=bpChanged)
+    bpplot = Property(str, getBPplot, setBP, notify=bpChanged)
