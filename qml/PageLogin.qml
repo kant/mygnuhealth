@@ -21,15 +21,20 @@ title: qsTr("Login")
         anchors.fill: parent
 
         Image {
+            id: padlockicon
             Layout.fillWidth: true
+            anchors.centerIn: parent
             fillMode: Image.PreserveAspectFit
-            source: "../images/dialog-password.png"
+            source: "../images/padlock-icon.svg"
 
         }
 
         TextField {
             id: txtKey
             placeholderText: qsTr("Secret Key")
+            anchors.top: padlockicon.bottom
+            anchors.horizontalCenter: padlockicon.horizontalCenter
+
             // Kirigami.FormData.label: qsTr("Key")
             echoMode: TextInput.Password
             focus: true
