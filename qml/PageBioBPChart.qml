@@ -20,14 +20,15 @@ title: qsTr("GNU Health - BP History")
             id: bphistchart
             Layout.alignment: Qt.AlignCenter
             width: 350
-            height: 200
             border.width: 1
             border.color: "#108498"
 
-
             Image {
                 id:bphistplot
+                width: 350
                 source: ghbio.bpplot
+                fillMode: Image.PreserveAspectFit
+
             }
        }
     }

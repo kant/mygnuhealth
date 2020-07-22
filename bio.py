@@ -87,16 +87,17 @@ class GHBio(QObject):
         bphrhist.append(hr)
 
 
-        fig, axs = plt.subplots(2)
+        fig, axs = plt.subplots(3)
         axs[0].plot(bpsys)
-        axs[0].plot(bpdia)
+        axs[1].plot(bpdia)
         # bp.plot(bpdia)
         # fig.show()
         # fig.autofmt_xdate()
-        axs[1].plot(hr)
+        axs[2].plot(hr)
         holder = io.BytesIO()
-        fig.savefig(holder, format="png")
-        image = "data:image/png;base64," + base64.b64encode(holder.getvalue()).decode()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
 
         holder.close()
         return (image)
@@ -110,6 +111,8 @@ class GHBio(QObject):
     bpChanged = Signal()
 
     # BP property to be accessed to and from QML and Python.
+    # It is used in the context of showing the BP last results
+    # in the main bio screen.
     bp = Property("QVariantList", getBP, setBP, notify=bpChanged)
 
     # BP property to be accessed to and from QML and Python.

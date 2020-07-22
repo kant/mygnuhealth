@@ -100,4 +100,3 @@ def verify_installation_status():
     check_inst_dir()
     check_config()
     check_db()
-
