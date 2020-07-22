@@ -15,16 +15,21 @@ class GHBio(QObject):
     db = TinyDB(dbfile)
 
     def read_bp(self):
-        #Retrieve all the BP / HR history
+        #Retrieve the BP history
         blood_pressure = self.db.table('bloodpressure')
-        hr = self.db.table('heart_rate')
         bphist = blood_pressure.all()
+        return (bphist)
+
+    def read_hr(self):
+        #Retrieve the HR history
+        hr = self.db.table('heart_rate')
         hrhist = hr.all()
-        return (bphist,hrhist)
+        return (hrhist)
 
     def getBP(self):
-        # Extracts the latest readings from BP / HR
-        bphist,hrhist = self.read_bp()
+        # Extracts the latest readings from BP
+        bphist = self.read_bp()
+        hrhist = self.read_hr()
         bp = bphist[-1]  # Get the latest (newest) record
         hr = hrhist[-1]
 
@@ -37,14 +42,9 @@ class GHBio(QObject):
 
     def getBPHist(self):
         # Retrieves all the history and packages into an array.
-        bphist,hrhist = self.read_bp()
+        bphist = self.read_bp()
+        hrhist = self.read_hr()
         bphrhist = []
-
-        """TODO:
-            The best would be to be able to pass the JSON dictionary
-            instead of an array of arrays to QVariantList.
-
-        """
 
         bpsys = []
         bpdia = []
@@ -62,38 +62,32 @@ class GHBio(QObject):
         return bphrhist
 
 
-    def getBPplot(self):
+    def BPplot(self):
         # Retrieves all the history and packages into an array.
-        bphist,hrhist = self.read_bp()
-        bphrhist = []
-
-        """TODO:
-            The best would be to be able to pass the JSON dictionary
-            instead of an array of arrays to QVariantList.
-
-        """
-
+        bphist = self.read_bp()
         bpsys = []
         bpdia = []
-        hr = []
+        bp_date = []
+        lastreading=''
         for element in bphist:
-            bpsys.append(element['systolic'])
-            bpdia.append(element['diastolic'])
-        bphrhist.append(bpsys)
-        bphrhist.append(bpdia)
+            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
 
-        for element in hrhist:
-            hr.append(element['heart_rate'])
-        bphrhist.append(hr)
+            # Only print one value per day to avoid artifacts in plotting.
+            if (lastreading != date_repr):
+                bp_date.append(dateobj)
+                bpsys.append(element['systolic'])
+                bpdia.append(element['diastolic'])
 
+            lastreading = date_repr
 
-        fig, axs = plt.subplots(3)
-        axs[0].plot(bpsys)
-        axs[1].plot(bpdia, color='teal')
-        # bp.plot(bpdia)
-        # fig.show()
-        # fig.autofmt_xdate()
-        axs[2].plot(hr, color="orange")
+        fig, axs = plt.subplots(2)
+
+        #Plot both systolic and diastolic history
+        axs[0].plot(bp_date, bpsys)
+        axs[1].plot(bp_date, bpdia, color='teal')
+
+        fig.autofmt_xdate()
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
         image = "data:image/svg+xml;base64," + \
@@ -101,6 +95,38 @@ class GHBio(QObject):
 
         holder.close()
         return (image)
+
+
+    def HRplot(self):
+        # Retrieves all the history and packages into an array.
+        hrhist = self.read_hr()
+        hr = []
+        hr_date= []
+        lastreading=''
+        for element in hrhist:
+            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
+            # Only print one value per day to avoid artifacts in plotting.
+            if (lastreading != date_repr):
+                hr_date.append(dateobj)
+                hr.append(element['heart_rate'])
+
+            lastreading = date_repr
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        fig.autofmt_xdate()
+        ax.plot(hr_date, hr, color="orange")
+
+        holder = io.BytesIO()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return (image)
+
 
     def setBP(self, bp):
         self.current_bp = bp
@@ -115,5 +141,10 @@ class GHBio(QObject):
     # in the main bio screen.
     bp = Property("QVariantList", getBP, setBP, notify=bpChanged)
 
-    # BP property to be accessed to and from QML and Python.
-    bpplot = Property(str, getBPplot, setBP, notify=bpChanged)
+    # Property to retrieve the plot of the Blood pressure.
+    bpplot = Property(str, BPplot, setBP, notify=bpChanged)
+
+    # Retrieve the heart rate history.
+    # I made a different plot because the dates can differ from those of the 
+    # Blood pressure monitor readings.
+    hrplot = Property(str, HRplot, setBP, notify=bpChanged)

@@ -15,11 +15,14 @@ title: qsTr("GNU Health - BP History")
 
     ColumnLayout {
         spacing: 50
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
         Rectangle {
             id: bphistchart
             Layout.alignment: Qt.AlignCenter
-            width: 350
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 200
             border.width: 1
             border.color: "#108498"
 
@@ -28,9 +31,27 @@ title: qsTr("GNU Health - BP History")
                 width: 350
                 source: ghbio.bpplot
                 fillMode: Image.PreserveAspectFit
+            }
+       }
+
+
+        Rectangle {
+            id: hrhistchart
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 350
+            Layout.preferredHeight: 100
+            border.width: 1
+            border.color: "#108498"
+
+            Image {
+                id:hrhistplot
+                width: 350
+                source: ghbio.hrplot
+                fillMode: Image.PreserveAspectFit
 
             }
        }
+
     }
 }
 
