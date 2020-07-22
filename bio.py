@@ -89,11 +89,11 @@ class GHBio(QObject):
 
         fig, axs = plt.subplots(3)
         axs[0].plot(bpsys)
-        axs[1].plot(bpdia)
+        axs[1].plot(bpdia, color='teal')
         # bp.plot(bpdia)
         # fig.show()
         # fig.autofmt_xdate()
-        axs[2].plot(hr)
+        axs[2].plot(hr, color="orange")
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
         image = "data:image/svg+xml;base64," + \
