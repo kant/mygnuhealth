@@ -87,7 +87,11 @@ class GHBio(QObject):
         axs[0].plot(bp_date, bpsys)
         axs[1].plot(bp_date, bpdia, color='teal')
 
+        axs[0].set_ylabel('Systolic', size=13)
+        axs[1].set_ylabel('Diastolic', size=13)
+
         fig.autofmt_xdate()
+        fig.suptitle("Blood Pressure (mm Hg)",size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
         image = "data:image/svg+xml;base64," + \
@@ -116,8 +120,11 @@ class GHBio(QObject):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
-        fig.autofmt_xdate()
         ax.plot(hr_date, hr, color="orange")
+
+        ax.set_ylabel('Frequency',size=13)
+        fig.autofmt_xdate()
+        fig.suptitle("Heart Rate (bpm)",size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")

@@ -8,13 +8,13 @@ import GHBio 0.1
 Kirigami.Page
 {
 id: bphist
-title: qsTr("GNU Health - BP History")
+title: qsTr("Blood Pressure & Heart Rate")
     GHBio { // GHBio object registered at main.py
         id: ghbio
     }
 
     ColumnLayout {
-        spacing: 50
+        spacing: 30
         Layout.fillWidth: true
         Layout.fillHeight: true
 
@@ -22,15 +22,15 @@ title: qsTr("GNU Health - BP History")
             id: bphistchart
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
-            Layout.preferredHeight: 200
-            border.width: 1
+            Layout.preferredHeight: 250
+            border.width: 2
             border.color: "#108498"
 
             Image {
                 id:bphistplot
-                width: 350
+                anchors.fill: parent
                 source: ghbio.bpplot
-                fillMode: Image.PreserveAspectFit
+                fillMode:Image.PreserveAspectFit
             }
        }
 
@@ -38,17 +38,16 @@ title: qsTr("GNU Health - BP History")
         Rectangle {
             id: hrhistchart
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
-            Layout.preferredHeight: 100
-            border.width: 1
+            Layout.preferredWidth: 340
+            Layout.preferredHeight: 240
+            border.width: 2
             border.color: "#108498"
 
             Image {
                 id:hrhistplot
-                width: 350
+                anchors.fill: parent
                 source: ghbio.hrplot
-                fillMode: Image.PreserveAspectFit
-
+                fillMode:Image.PreserveAspectFit
             }
        }
 

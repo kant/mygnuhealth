@@ -120,8 +120,9 @@ title: qsTr("GNU Health - BIO")
                     Text {
                         id: txtGlucose
                         anchors.centerIn: parent
+                        // TODO
                         // property var glucoseinfo: ghbio.glucose
-                        text: "96 mg/dL (TODO)"
+                        text: "96 mg/dL"
                         color: "#108498"
                         font.pointSize: 12
                     }
@@ -162,8 +163,9 @@ title: qsTr("GNU Health - BIO")
                     Text {
                         id: txtWeight
                         anchors.centerIn: parent
+                        // TODO
                         // property var weightinfo: ghbio.weight
-                        text: "90.3 Kg (TODO)"
+                        text: "90.3 Kg"
                         color: "#108498"
                         font.pointSize: 12
                     }
@@ -203,8 +205,9 @@ title: qsTr("GNU Health - BIO")
                     Text {
                         id: txtOsat
                         anchors.centerIn: parent
+                        // TODO
                         // property var osatinfo: ghbio.osat
-                        text: "98% (TODO)"
+                        text: "98%"
                         color: "#108498"
                         font.pointSize: 12
                     }
