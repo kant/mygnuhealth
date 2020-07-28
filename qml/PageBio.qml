@@ -51,39 +51,38 @@ title: qsTr("GNU Health - BIO")
                 property var bpdiastolic: bpinfo[2]
                 property var heartrate: bpinfo[3] + ' bpm'
 
-                ColumnLayout {
-                    anchors.fill: parent
-                    spacing: 5
-                    Text {
-                        id: txtBpdate
-                        Layout.alignment: Qt.AlignCenter
-                        text: bphist.bpdate
-                        color: "#108498"
-                        font.pointSize: 10
-                    }
-
-                    Text {
-                        id: txtBp
-                        Layout.alignment: Qt.AlignCenter
-                        text: bphist.bpsystolic + ' / ' + bphist.bpdiastolic
-                        color: "#108498"
-                        font.bold: true
-                        font.pointSize: 12
-                    }
-
-                    Text {
-                        id: txtHr
-                        Layout.alignment: Qt.AlignCenter
-                        text: bphist.heartrate
-                        color: "#108498"
-                        font.pointSize: 12
-                    }
-                }
                 MouseArea {
                 anchors.fill: parent
                 onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
                 }
 
+                Text {
+                    id: txtBpdate
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.topMargin:5
+                    text: bphist.bpdate
+                    color: "#108498"
+                    font.pointSize: 10
+                }
+
+                Text {
+                    id: txtBp
+                    anchors.centerIn: parent
+                    text: bphist.bpsystolic + ' / ' + bphist.bpdiastolic
+                    color: "#108498"
+                    font.bold: true
+                    font.pointSize: 12
+                    }
+
+                Text {
+                    id: txtHr
+                    anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: bphist.heartrate
+                    color: "#108498"
+                    font.pointSize: 10
+                }
             }
         }
 
@@ -126,29 +125,30 @@ title: qsTr("GNU Health - BIO")
                 property var glucose: glucoseinfo[1]
 
                 anchors.left: glucoserectangle.right
-                ColumnLayout {
-                    anchors.fill: parent
-                    spacing: 5
-                    Text {
-                        id: txtGlucoseDate
-                        Layout.alignment: Qt.AlignCenter
-                        text: glucosehist.glucosedate
-                        color: "#108498"
-                        font.pointSize: 10
-                    }
 
-                    Text {
-                        id: txtGlucose
-                        Layout.alignment: Qt.AlignCenter
-                        text: glucosehist.glucose + ' mg/dl'
-                        color: "#108498"
-                        font.bold: true
-                        font.pointSize: 12
-                    }
-                    MouseArea {
-                    anchors.fill: parent
-                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
-                    }
+                MouseArea {
+                anchors.fill: parent
+                onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
+                }
+
+                Text {
+                    id: txtGlucoseDate
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.topMargin:5
+                    text: glucosehist.glucosedate
+                    color: "#108498"
+                    font.pointSize: 10
+                }
+
+                Text {
+                    id: txtGlucose
+                    anchors.centerIn: parent
+                    text: glucosehist.glucose + ' mg/dl'
+                    horizontalAlignment: TextInput.AlignHCenter
+                    color: "#108498"
+                    font.bold: true
+                    font.pointSize: 12
                 }
             }
         }
@@ -176,22 +176,47 @@ title: qsTr("GNU Health - BIO")
                     source: "../images/weight-icon.svg"
                     anchors.fill: parent
                     fillMode:Image.PreserveAspectFit
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: pageStack.push(Qt.resolvedUrl("PageWeight.qml"))
+                    }
                }
             }
+
             Rectangle {
-                id:weighthistoryrectangle
+                id:weighthist
                 width: 250
                 height: 100
+                property var weightinfo: ghbio.weight
+                property var weightdate: weightinfo[0]
+                property var weight: weightinfo[1]
+
                 anchors.left: weightrectangle.right
-                    Text {
-                        id: txtWeight
-                        anchors.centerIn: parent
-                        // TODO
-                        // property var weightinfo: ghbio.weight
-                        text: "90.3 Kg"
-                        color: "#108498"
-                        font.pointSize: 12
-                    }
+
+                MouseArea {
+                anchors.fill: parent
+                onClicked: pageStack.push(Qt.resolvedUrl("PageBioWeightChart.qml"))
+                }
+
+                Text {
+                    id: txtWeightDate
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.topMargin:5
+                    text: weighthist.weightdate
+                    color: "#108498"
+                    font.pointSize: 10
+                }
+
+                Text {
+                    id: txtWeight
+                    anchors.centerIn: parent
+                    text: weighthist.weight + ' kg'
+                    horizontalAlignment: TextInput.AlignHCenter
+                    color: "#108498"
+                    font.bold: true
+                    font.pointSize: 12
+                }
             }
         }
 
@@ -218,23 +243,47 @@ title: qsTr("GNU Health - BIO")
                     source: "../images/osat-icon.svg"
                     anchors.fill: parent
                     fillMode:Image.PreserveAspectFit
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: pageStack.push(Qt.resolvedUrl("PageOsat.qml"))
+                    }
                }
             }
+
             Rectangle {
-                id:osathistoryrectangle
+                id:osathist
                 width: 250
                 height: 100
-                anchors.left: osatrectangle.right
-                    Text {
-                        id: txtOsat
-                        anchors.centerIn: parent
-                        // TODO
-                        // property var osatinfo: ghbio.osat
-                        text: "98%"
-                        color: "#108498"
-                        font.pointSize: 12
-                    }
+                property var osatinfo: ghbio.osat
+                property var osatdate: osatinfo[0]
+                property var osat: osatinfo[1]
 
+                anchors.left: osatrectangle.right
+
+                MouseArea {
+                anchors.fill: parent
+                onClicked: pageStack.push(Qt.resolvedUrl("PageBioOsatChart.qml"))
+                }
+
+                Text {
+                    id: txtOsatDate
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.topMargin:5
+                    text: osathist.osatdate
+                    color: "#108498"
+                    font.pointSize: 10
+                }
+
+                Text {
+                    id: txtOsat
+                    anchors.centerIn: parent
+                    text: osathist.osat + ' %'
+                    horizontalAlignment: TextInput.AlignHCenter
+                    color: "#108498"
+                    font.bold: true
+                    font.pointSize: 12
+                }
             }
         }
 

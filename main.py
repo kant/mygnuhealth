@@ -37,6 +37,8 @@ from bio import GHBio
 
 from bloodpressure import BloodPressure
 from glucose import Glucose
+from weight import Weight
+from osat import Osat
 
 from myghconf import verify_installation_status
 
@@ -58,6 +60,14 @@ if __name__ == "__main__":
     # Register Glucose to use in QML
     qmlRegisterType(Glucose, "Glucose", 0, 1,
                     "Glucose")
+
+    # Register Weight to use in QML
+    qmlRegisterType(Weight, "Weight", 0, 1,
+                    "Weight")
+
+    # Register Osat to use in QML
+    qmlRegisterType(Osat, "Osat", 0, 1,
+                    "Osat")
 
     # Register GHLogin to use in QML
     qmlRegisterType(GHLogin, "GHLogin", 0, 1,

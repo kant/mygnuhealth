@@ -12,6 +12,8 @@ class GHBio(QObject):
 
         self.current_bp = ""
         self.current_glucose = ""
+        self.current_weight = ""
+        self.current_osat = ""
 
     db = TinyDB(dbfile)
 
@@ -169,7 +171,7 @@ class GHBio(QObject):
 
     def getGlucoseHist(self):
         # Retrieves all the history and packages into an array.
-        glucosehist = self.read_bp()
+        glucosehist = self.read_glucose()
 
         glucose = []
         for element in glucosehist:
@@ -210,6 +212,141 @@ class GHBio(QObject):
         holder.close()
         return (image)
 
+    # WEIGHT
+    def setWeight(self, weight):
+        self.current_weight = weight
+        # Call the notifying signal
+        self.weightChanged.emit()
+
+    def read_weight(self):
+        #Retrieve the blood weight levels history
+        weight = self.db.table('weight')
+        weighthist = weight.all()
+        return (weighthist)
+
+
+    def getWeight(self):
+        # Extracts the latest readings from Weight
+        weighthist = self.read_weight()
+        weight = weighthist[-1]  # Get the latest (newest) record
+
+        dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
+        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+
+        weightobj = [str(date_repr), str(weight['weight'])]
+        return weightobj
+
+    def getWeightHist(self):
+        # Retrieves all the history and packages into an array.
+        weighthist = self.read_weight()
+
+        weight = []
+        for element in weighthist:
+            weight.append(element['weight'])
+        return weight
+
+    def Weightplot(self):
+        # Retrieves all the history and packages into an array.
+        weighthist = self.read_weight()
+        weight = []
+        weight_date= []
+        lastreading=''
+        for element in weighthist:
+            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
+            # Only print one value per day to avoid artifacts in plotting.
+            #if (lastreading != date_repr):
+            weight_date.append(dateobj)
+            weight.append(element['weight'])
+
+            #lastreading = date_repr
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.plot(weight_date, weight, color="blue")
+
+        ax.set_ylabel('kg',size=13)
+        fig.autofmt_xdate()
+        fig.suptitle("Weight (kg)",size=20)
+
+        holder = io.BytesIO()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return (image)
+
+
+
+    # OSAT
+    def setOsat(self, osat):
+        self.current_osat = osat
+        # Call the notifying signal
+        self.osatChanged.emit()
+
+    def read_osat(self):
+        #Retrieve the blood osat levels history
+        osat = self.db.table('osat')
+        osathist = osat.all()
+        return (osathist)
+
+
+    def getOsat(self):
+        # Extracts the latest readings from Osat
+        osathist = self.read_osat()
+        osat = osathist[-1]  # Get the latest (newest) record
+
+        dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
+        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+
+        osatobj = [str(date_repr), str(osat['osat'])]
+        return osatobj
+
+    def getOsatHist(self):
+        # Retrieves all the history and packages into an array.
+        osathist = self.read_osat()
+
+        osat = []
+        for element in osathist:
+            osat.append(element['osat'])
+        return osat
+
+    def Osatplot(self):
+        # Retrieves all the history and packages into an array.
+        osathist = self.read_osat()
+        osat = []
+        osat_date= []
+        lastreading=''
+        for element in osathist:
+            print (element)
+            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
+            # Only print one value per day to avoid artifacts in plotting.
+            #if (lastreading != date_repr):
+            osat_date.append(dateobj)
+            osat.append(element['osat'])
+
+            #lastreading = date_repr
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.plot(osat_date, osat, color="red")
+
+        ax.set_ylabel('%',size=13)
+        fig.autofmt_xdate()
+        fig.suptitle("Osat (%)",size=20)
+
+        holder = io.BytesIO()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return (image)
+
 
     # PROPERTIES BLOCK
 
@@ -240,3 +377,27 @@ class GHBio(QObject):
 
     # Property to retrieve the plot of the blood glucose level.
     glucoseplot = Property(str, Glucoseplot, setGlucose, notify=bpChanged)
+
+
+    # Notifying signal - to be used in qml as "onWeightChanged"
+    weightChanged = Signal()
+
+    # Weight property to be accessed to and from QML and Python.
+    # It is used in the context of showing the BP last results
+    # in the main bio screen.
+    weight = Property("QVariantList", getWeight, setWeight, notify=weightChanged)
+
+    # Property to retrieve the plot of the blood weight level.
+    weightplot = Property(str, Weightplot, setWeight, notify=bpChanged)
+
+
+    # Notifying signal - to be used in qml as "onOsatChanged"
+    osatChanged = Signal()
+
+    # Osat property to be accessed to and from QML and Python.
+    # It is used in the context of showing the BP last results
+    # in the main bio screen.
+    osat = Property("QVariantList", getOsat, setOsat, notify=osatChanged)
+
+    # Property to retrieve the plot of the blood osat level.
+    osatplot = Property(str, Osatplot, setOsat, notify=bpChanged)
