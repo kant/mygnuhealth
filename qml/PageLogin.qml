@@ -16,26 +16,21 @@ title: qsTr("Login")
         }
     }
 
-    Kirigami.FormLayout {
+    ColumnLayout {
         id: content
-        anchors.fill: parent
-
+        anchors.centerIn: parent
+        spacing: 20
         Image {
             id: padlockicon
-            Layout.fillWidth: true
-            anchors.centerIn: parent
-            fillMode: Image.PreserveAspectFit
+            Layout.alignment: Qt.AlignHCenter
             source: "../images/padlock-icon.svg"
 
         }
-
         TextField {
             id: txtKey
-            placeholderText: qsTr("Secret Key")
-            anchors.top: padlockicon.bottom
-            anchors.horizontalCenter: padlockicon.horizontalCenter
-
-            // Kirigami.FormData.label: qsTr("Key")
+            Layout.alignment: Qt.AlignHCenter
+            placeholderText: qsTr("Key")
+            horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
             focus: true
             onAccepted: {
@@ -45,8 +40,7 @@ title: qsTr("Login")
 
         Button {
             id: buttonKey
-            anchors.horizontalCenter: txtKey.horizontalCenter
-            anchors.top: txtKey.bottom
+            Layout.alignment: Qt.AlignHCenter
             text: qsTr("Enter")
             flat: false
             onClicked: {
