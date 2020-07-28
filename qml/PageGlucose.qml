@@ -7,7 +7,7 @@ import Glucose 0.1
 Kirigami.Page
 {
 id: glucosePage
-title: qsTr("Blood Pressure Monitor")
+title: qsTr("Blood Glucose Level Monitor")
 
     Glucose { // Glucose object registered at main.py
         id: blood_glucose
@@ -16,16 +16,15 @@ title: qsTr("Blood Pressure Monitor")
         }
     }
 
-
-    Kirigami.FormLayout {
+    ColumnLayout {
         id: content
-        anchors.fill: parent
-
+        spacing: 10
+        anchors.centerIn: parent
         TextField {
             id: txtGlucose
             placeholderText: qsTr("Blood Glucose")
             maximumLength: 3
-            font.pointSize: 50
+            font.pointSize: 30
             font.bold: true
             horizontalAlignment: TextInput.AlignHCenter
             background: Rectangle {
@@ -36,8 +35,10 @@ title: qsTr("Blood Pressure Monitor")
 
         Button {
             id: buttonSetGlucose
-            anchors.horizontalCenter: txtGlucose.horizontalCenter
-            anchors.top: txtGlucose.bottom
+            //anchors.horizontalCenter: txtGlucose.horizontalCenter
+            // anchors.top: txtGlucose.bottom
+            Layout.alignment: Qt.AlignHCenter
+
             text: qsTr("Done")
             flat: false
             onClicked: {

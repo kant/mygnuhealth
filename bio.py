@@ -164,7 +164,6 @@ class GHBio(QObject):
         dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
         date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
-        print (glucose)
         glucoseobj = [str(date_repr), str(glucose['glucose'])]
         return glucoseobj
 
@@ -176,6 +175,40 @@ class GHBio(QObject):
         for element in glucosehist:
             glucose.append(element['glucose'])
         return glucose
+
+    def Glucoseplot(self):
+        # Retrieves all the history and packages into an array.
+        glucosehist = self.read_glucose()
+        glucose = []
+        glucose_date= []
+        lastreading=''
+        for element in glucosehist:
+            print (element)
+            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
+            # Only print one value per day to avoid artifacts in plotting.
+            #if (lastreading != date_repr):
+            glucose_date.append(dateobj)
+            glucose.append(element['glucose'])
+
+            #lastreading = date_repr
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.plot(glucose_date, glucose, color="red")
+
+        ax.set_ylabel('mg/dl',size=13)
+        fig.autofmt_xdate()
+        fig.suptitle("Glucose level (mg/dl)",size=20)
+
+        holder = io.BytesIO()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return (image)
 
 
     # PROPERTIES BLOCK
@@ -204,3 +237,6 @@ class GHBio(QObject):
     # It is used in the context of showing the BP last results
     # in the main bio screen.
     glucose = Property("QVariantList", getGlucose, setGlucose, notify=glucoseChanged)
+
+    # Property to retrieve the plot of the blood glucose level.
+    glucoseplot = Property(str, Glucoseplot, setGlucose, notify=bpChanged)

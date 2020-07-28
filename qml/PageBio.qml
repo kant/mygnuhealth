@@ -140,12 +140,15 @@ title: qsTr("GNU Health - BIO")
                     Text {
                         id: txtGlucose
                         Layout.alignment: Qt.AlignCenter
-                        text: glucosehist.glucose + ' mg/dL'
+                        text: glucosehist.glucose + ' mg/dl'
                         color: "#108498"
                         font.bold: true
                         font.pointSize: 12
                     }
-
+                    MouseArea {
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
+                    }
                 }
             }
         }
