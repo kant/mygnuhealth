@@ -110,23 +110,43 @@ title: qsTr("GNU Health - BIO")
                     source: "../images/glucose-icon.svg"
                     anchors.fill: parent
                     fillMode:Image.PreserveAspectFit
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: pageStack.push(Qt.resolvedUrl("PageGlucose.qml"))
+                    }
                }
             }
+
             Rectangle {
-                id:glucosehistoryrectangle
+                id:glucosehist
                 width: 250
                 height: 100
+                property var glucoseinfo: ghbio.glucose
+                property var glucosedate: glucoseinfo[0]
+                property var glucose: glucoseinfo[1]
+
                 anchors.left: glucoserectangle.right
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 5
+                    Text {
+                        id: txtGlucoseDate
+                        Layout.alignment: Qt.AlignCenter
+                        text: glucosehist.glucosedate
+                        color: "#108498"
+                        font.pointSize: 10
+                    }
+
                     Text {
                         id: txtGlucose
-                        anchors.centerIn: parent
-                        // TODO
-                        // property var glucoseinfo: ghbio.glucose
-                        text: "96 mg/dL"
+                        Layout.alignment: Qt.AlignCenter
+                        text: glucosehist.glucose + ' mg/dL'
                         color: "#108498"
+                        font.bold: true
                         font.pointSize: 12
                     }
 
+                }
             }
         }
 

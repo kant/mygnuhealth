@@ -36,6 +36,7 @@ from ghlogin import GHLogin
 from bio import GHBio
 
 from bloodpressure import BloodPressure
+from glucose import Glucose
 
 from myghconf import verify_installation_status
 
@@ -53,6 +54,10 @@ if __name__ == "__main__":
     # Register BloodPressure to use in QML
     qmlRegisterType(BloodPressure, "BloodPressure", 0, 1,
                     "BloodPressure")
+
+    # Register Glucose to use in QML
+    qmlRegisterType(Glucose, "Glucose", 0, 1,
+                    "Glucose")
 
     # Register GHLogin to use in QML
     qmlRegisterType(GHLogin, "GHLogin", 0, 1,

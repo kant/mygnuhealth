@@ -11,6 +11,7 @@ class GHBio(QObject):
         QObject.__init__(self)
 
         self.current_bp = ""
+        self.current_glucose = ""
 
     db = TinyDB(dbfile)
 
@@ -140,6 +141,45 @@ class GHBio(QObject):
         # Call the notifying signal
         self.bpChanged.emit()
 
+
+
+    # GLUCOSE
+    def setGlucose(self, glucose):
+        self.current_glucose = glucose
+        # Call the notifying signal
+        self.glucoseChanged.emit()
+
+    def read_glucose(self):
+        #Retrieve the blood glucose levels history
+        glucose = self.db.table('glucose')
+        glucosehist = glucose.all()
+        return (glucosehist)
+
+
+    def getGlucose(self):
+        # Extracts the latest readings from Glucose
+        glucosehist = self.read_glucose()
+        glucose = glucosehist[-1]  # Get the latest (newest) record
+
+        dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
+        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+
+        print (glucose)
+        glucoseobj = [str(date_repr), str(glucose['glucose'])]
+        return glucoseobj
+
+    def getGlucoseHist(self):
+        # Retrieves all the history and packages into an array.
+        glucosehist = self.read_bp()
+
+        glucose = []
+        for element in glucosehist:
+            glucose.append(element['glucose'])
+        return glucose
+
+
+    # PROPERTIES BLOCK
+
     # Notifying signal - to be used in qml as "onBPChanged"
     bpChanged = Signal()
 
@@ -155,3 +195,12 @@ class GHBio(QObject):
     # I made a different plot because the dates can differ from those of the 
     # Blood pressure monitor readings.
     hrplot = Property(str, HRplot, setBP, notify=bpChanged)
+
+
+    # Notifying signal - to be used in qml as "onGlucoseChanged"
+    glucoseChanged = Signal()
+
+    # Glucose property to be accessed to and from QML and Python.
+    # It is used in the context of showing the BP last results
+    # in the main bio screen.
+    glucose = Property("QVariantList", getGlucose, setGlucose, notify=glucoseChanged)
