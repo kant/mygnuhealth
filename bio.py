@@ -5,6 +5,7 @@ import datetime
 import matplotlib.pyplot as plt
 import io
 import base64
+from core import datefromisotz
 
 class GHBio(QObject):
     def __init__(self):
@@ -36,7 +37,8 @@ class GHBio(QObject):
         bp = bphist[-1]  # Get the latest (newest) record
         hr = hrhist[-1]
 
-        dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
+        #dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
+        dateobj =  datefromisotz(bp['timestamp'])
         date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
         bpobj = [str(date_repr), str(bp['systolic']), str(bp['diastolic']),
@@ -73,7 +75,9 @@ class GHBio(QObject):
         bp_date = []
         lastreading=''
         for element in bphist:
-            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj =  datefromisotz(element['timestamp'])
+
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
@@ -111,7 +115,8 @@ class GHBio(QObject):
         hr_date= []
         lastreading=''
         for element in hrhist:
-            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
             if (lastreading != date_repr):
@@ -163,7 +168,8 @@ class GHBio(QObject):
         glucosehist = self.read_glucose()
         glucose = glucosehist[-1]  # Get the latest (newest) record
 
-        dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
+        #dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
+        dateobj =  datefromisotz(glucose['timestamp'])
         date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
         glucoseobj = [str(date_repr), str(glucose['glucose'])]
@@ -185,8 +191,8 @@ class GHBio(QObject):
         glucose_date= []
         lastreading=''
         for element in glucosehist:
-            print (element)
-            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
             #if (lastreading != date_repr):
@@ -230,7 +236,8 @@ class GHBio(QObject):
         weighthist = self.read_weight()
         weight = weighthist[-1]  # Get the latest (newest) record
 
-        dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
+        #dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
+        dateobj =  datefromisotz(weight['timestamp'])
         date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
         weightobj = [str(date_repr), str(weight['weight'])]
@@ -252,7 +259,8 @@ class GHBio(QObject):
         weight_date= []
         lastreading=''
         for element in weighthist:
-            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
             #if (lastreading != date_repr):
@@ -298,7 +306,8 @@ class GHBio(QObject):
         osathist = self.read_osat()
         osat = osathist[-1]  # Get the latest (newest) record
 
-        dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
+        #dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
+        dateobj =  datefromisotz(osat['timestamp'])
         date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
         osatobj = [str(date_repr), str(osat['osat'])]
@@ -320,8 +329,8 @@ class GHBio(QObject):
         osat_date= []
         lastreading=''
         for element in osathist:
-            print (element)
-            dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
             #if (lastreading != date_repr):

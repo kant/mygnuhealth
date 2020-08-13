@@ -40,7 +40,16 @@ from glucose import Glucose
 from weight import Weight
 from osat import Osat
 
+import dateutil.parser
+
 from myghconf import verify_installation_status
+
+#Common methods
+#Use this method to be compatible with Python 3.6
+# datetime fromisoformat is not present until Python 3.7
+def datefromisotz (isotz):
+    if isotz:
+        return (dateutil.parser.parse(isotz))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
