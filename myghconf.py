@@ -38,30 +38,30 @@ dbfile = os.path.join(gh_dir, 'ghealth.db')
 
 
 def check_inst_dir():
-    if not (os.path.isdir(gh_dir)):
+    if (os.path.isdir(gh_dir)):
+        print ("Directory exists... skipping\n")
+    else:
         print ("Initializing MyGNUHealth directory")
         try:
             os.mkdir(gh_dir)
         except:
             print ("Error initializing MyGNUHealth directory")
-    else:
-        print ("Directory exists... skipping\n")
 
 def check_config():
-    if not os.path.isfile(config_file):
+    if os.path.isfile(config_file):
+        print ("Found myGNUHealth configuration file.. skipping")
+    else:
         print ("Configuration file not found. Writing defaults")
         set_default_config_file()
-    else:
-        print ("Found myGNUHealth configuration file.. skipping")
 
 def check_db():
-    if not os.path.isfile(dbfile):
+    print ("Verifying MyGNUHealth Database.....")
+    if os.path.isfile(dbfile):
+        print ("MyGNUHealth DB exists.. skipping")
+    else:
         print ("DB file not found. Initializing MyGNUHealth...")
         db = TinyDB(dbfile)
         init_db(db)
-    else:
-        print ("MyGNUHealth DB exists.. skipping")
-
 
 def validate_password():
     passwd = getpass.getpass()
@@ -100,3 +100,4 @@ def verify_installation_status():
     check_inst_dir()
     check_config()
     check_db()
+    return True

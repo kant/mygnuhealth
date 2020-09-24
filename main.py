@@ -31,18 +31,11 @@ import sys
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QObject, QUrl, Signal, Slot
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from fedlogin import FederationLogin
-from ghlogin import GHLogin
-from bio import GHBio
 
-from bloodpressure import BloodPressure
-from glucose import Glucose
-from weight import Weight
-from osat import Osat
+from myghconf import verify_installation_status
 
 import dateutil.parser
 
-from myghconf import verify_installation_status
 
 #Common methods
 #Use this method to be compatible with Python 3.6
@@ -51,11 +44,20 @@ def datefromisotz (isotz):
     if isotz:
         return (dateutil.parser.parse(isotz))
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
 
+if __name__ == "__main__":
     # Initial installation check
-    verify_installation_status()
+    if (verify_installation_status()):
+        from fedlogin import FederationLogin
+        from ghlogin import GHLogin
+        from bio import GHBio
+
+        from bloodpressure import BloodPressure
+        from glucose import Glucose
+        from weight import Weight
+        from osat import Osat
+
+    app = QApplication(sys.argv)
 
     # Register FedLogin to use in QML
     qmlRegisterType(FederationLogin, "FedLogin", 0, 1,
