@@ -41,36 +41,13 @@ id: phrpage
             Image {
                 id: psychoIcon
                 anchors.fill: parent
-                source: "../images/psycho-icon.svg"
+                source: "../images/book_of_life-icon.svg"
                 fillMode:Image.PreserveAspectFit
             }
             /*
             MouseArea {
             anchors.fill: parent
-            onClicked: pageStack.push(Qt.resolvedUrl("PagePsycho.qml"))
-            }
-            */
-        }
-
-        Rectangle {
-            id:socialrectangle
-            color: "#108498"
-            Layout.alignment: Qt.AlignCenter
-
-            Layout.preferredWidth: 350
-            Layout.preferredHeight: 100
-            radius: 10
-
-            Image {
-                id: socialIcon
-                anchors.fill: parent
-                source: "../images/social-icon.svg"
-                fillMode:Image.PreserveAspectFit
-            }
-            /*
-            MouseArea {
-            anchors.fill: parent
-            onClicked: pageStack.push(Qt.resolvedUrl("PageSocial.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageBoL.qml"))
             }
             */
         }
