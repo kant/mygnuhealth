@@ -99,12 +99,21 @@ id: phrpage
         }
 
     }
-    actions.main: Kirigami.Action {
-        text: qsTr("Logout")
-        onTriggered: {
-            // Clear the stack and go to the initial page
-            pageStack.clear()
-            pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
+
+    actions {
+        left: Kirigami.Action {
+                text: qsTr("Setup")
+                onTriggered: pageStack.push(Qt.resolvedUrl("PageSetup.qml"))
+            }
+
+        right: Kirigami.Action {
+            text: qsTr("Logout")
+            onTriggered: {
+                // Clear the stack and go to the initial page
+                pageStack.clear()
+                pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
+            }
         }
+
     }
 }

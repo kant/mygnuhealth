@@ -22,9 +22,4 @@ Kirigami.Page {
 
         }
     }
-
-    actions.main: Kirigami.Action {
-        text: qsTr("Setup")
-        onTriggered: pageStack.push(Qt.resolvedUrl("PageSetup.qml"))
-    }
 }
