@@ -17,7 +17,7 @@ class ProfileSettings(QObject):
         credentials = self.db.table('credentials')
         credentials.update({'master_key':encrypted_key})
 
-        print ("Saved master key", password)
+        print ("Saved master key", encrypted_key)
 
 
     @Slot (str)
