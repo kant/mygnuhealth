@@ -25,5 +25,5 @@ class Glucose(QObject):
         self.insert_values(blood_glucose)
         self.setOK.emit()
 
-    # Signal to emit to QML if the blood pressure values were stored correctly
+    # Signal to emit to QML if the glucose values were stored correctly
     setOK = Signal()
