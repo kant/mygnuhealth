@@ -48,6 +48,7 @@ def datefromisotz (isotz):
 if __name__ == "__main__":
     # Initial installation check
     if (verify_installation_status()):
+        from profile_settings import ProfileSettings
         from fedlogin import FederationLogin
         from ghlogin import GHLogin
         from bio import GHBio
@@ -58,6 +59,10 @@ if __name__ == "__main__":
         from osat import Osat
 
     app = QApplication(sys.argv)
+
+    # Register Settings to use in QML
+    qmlRegisterType(ProfileSettings, "ProfileSettings", 0, 1,
+                    "ProfileSettings")
 
     # Register FedLogin to use in QML
     qmlRegisterType(FederationLogin, "FedLogin", 0, 1,
