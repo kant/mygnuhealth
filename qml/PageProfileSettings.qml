@@ -28,9 +28,10 @@ title: qsTr("MyGNUHealth Profile Settings")
             echoMode: TextInput.Password
             focus: true
             //onAccepted: {
-            //    profile_settings.getKey(txtUserPassword.text);
+            //    network_settings.getKey(txtUserPassword.text);
             //}
         }
+
 
         Button {
             id: buttonSetSettings
@@ -43,6 +44,7 @@ title: qsTr("MyGNUHealth Profile Settings")
             }
 
         }
+
     }
 
 }
