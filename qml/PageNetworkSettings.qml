@@ -22,26 +22,33 @@ title: qsTr("Network Settings")
 
         TextField {
             id: txtFederationProtocol
-            placeholderText: qsTr("Protocol")
+            placeholderText: qsTr("htpps")
+            text: qsTr("https")
             horizontalAlignment: TextInput.AlignHCenter
+            Kirigami.FormData.label: qsTr("Protocol")
          }
 
         TextField {
             id: txtFederationServer
-            placeholderText: qsTr("Server")
+            placeholderText: qsTr("federation.gnuhealth.org")
+            text: qsTr("federation.gnuhealth.org")
             horizontalAlignment: TextInput.AlignHCenter
+            Kirigami.FormData.label: qsTr("Host")
          }
 
         TextField {
             id: txtFederationPort
-            placeholderText: qsTr("Port")
+            placeholderText: qsTr("8443")
+            text: qsTr("8443")
             horizontalAlignment: TextInput.AlignHCenter
+            Kirigami.FormData.label: qsTr("Port")
          }
 
         TextField {
            id: txtFederationAccount
             placeholderText: qsTr("Federation ID")
             horizontalAlignment: TextInput.AlignHCenter
+            Kirigami.FormData.label: qsTr("Fed. Acct")
         }
 
         TextField {
@@ -49,18 +56,18 @@ title: qsTr("Network Settings")
             placeholderText: qsTr("Password")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
+            Kirigami.FormData.label: qsTr("Password")
         }
 
         CheckBox {
             id: enable_sync
-            text: qsTr("Enable sync")
             checked: false
+            Kirigami.FormData.label: qsTr("Sync")
         }
 
         Button {
             id: buttonCheckSettings
             Layout.alignment: Qt.AlignHCenter
-
             text: qsTr("Test Connection")
             flat: false
             onClicked: {
@@ -81,8 +88,10 @@ title: qsTr("Network Settings")
             text: qsTr("Done")
             flat: false
             onClicked: {
-                network_settings.getvals(txtFederationServer.text,
-                    txtFederationAccount.text, txtFederationAccountPassword.text,
+                network_settings.getvals(txtFederationProtocol.text,
+                    txtFederationServer.text,
+                    txtFederationPort.text,
+                    txtFederationAccount.text,
                     enable_sync);
             }
 
