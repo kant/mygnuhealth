@@ -15,13 +15,21 @@ class NetworkSettings(QObject):
                                federation_id, enable_sync):
 
         fedinfo = self.db.table('federation')
-        print ("Counting...", len(fedinfo))
-        fedinfo.update({'federation_server':federation_server},
-                       {'federation_port':federation_port},
-                       {'federation_id':federation_id},
-                       {'enable_sync':enable_sync}, doc_id==1)
-
-
+        #If the "Singleton" table is empty, insert, otherwise, update
+        #TODO: Use upsert with doc_id == 1 as condition
+        if (len(fedinfo) == 0):
+            fedinfo.insert({'protocol':protocol,
+                            'federation_server':federation_server,
+                            'federation_port':federation_port,
+                            'federation_id':federation_id,
+                            'enable_sync':enable_sync})
+        else:
+            fedinfo.update({'protocol':protocol,
+                            'federation_server':federation_server,
+                            'federation_port':federation_port,
+                            'federation_id':federation_id,
+                            'enable_sync':enable_sync})
+            
 
     @Slot (str,str,str,str,str)
     def test_connection(self,protocol, federation_server, federation_port,
