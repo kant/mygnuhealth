@@ -12,16 +12,16 @@ class NetworkSettings(QObject):
     db = TinyDB(dbfile)
 
     def update_federation_info(self, protocol, federation_server, federation_port,
-                               federation_id, password, enable_sync):
-
-        encrypted_key = bcrypt.hashpw(password.encode('utf-8'), \
-            bcrypt.gensalt()).decode('utf-8')
+                               federation_id, enable_sync):
 
         fedinfo = self.db.table('federation')
-        fedinfo.update({'federation_server':federation_server})
-        fedinfo.update({'federation_port':federation_port})
-        fedinfo.update({'federation_id':federation_id})
-        fedinfo.update({'password':encrypted_key})
+        print ("Counting...", len(fedinfo))
+        fedinfo.update({'federation_server':federation_server},
+                       {'federation_port':federation_port},
+                       {'federation_id':federation_id},
+                       {'enable_sync':enable_sync}, doc_id==1)
+
+
 
     @Slot (str,str,str,str,str)
     def test_connection(self,protocol, federation_server, federation_port,
@@ -32,11 +32,12 @@ class NetworkSettings(QObject):
         print (conn_res)
 
 
-    @Slot (str,str,str, str,str,bool)
+    @Slot (str,str,str, str,bool)
     def getvals(self,protocol, federation_server, federation_port, federation_id,
-                password, enable_sync):
-        self.update_federation_info(federation_server, federation_id, password)
-        self.setOK.emit()
+                enable_sync):
+        self.update_federation_info(protocol, federation_server, federation_port,
+                               federation_id, enable_sync)
+        #self.setOK.emit()
 
 
     # Signal to emit to QML if the values were stored correctly
