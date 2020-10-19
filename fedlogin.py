@@ -8,9 +8,6 @@ def test_federation_connection(protocol,host, port, acct, passwd):
     """
     conn = ''
 
-    print("Credentials -->", acct, passwd)
-
-
     url = protocol +"://" + host + ':' + str(port) + '/people/' + acct
 
     try:
