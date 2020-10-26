@@ -1,0 +1,16 @@
+global-include *.py
+global-include *.cfg
+global-include *.conf
+global-include *.rst
+
+include images/*.png
+include images/*.svg
+
+include qml/*.qml
+
+include MANIFEST.in
+include LICENSE
+include COPYRIGHT
+include version
+
+global-exclude *.pyc
