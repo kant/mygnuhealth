@@ -44,8 +44,8 @@ def datefromisotz (isotz):
     if isotz:
         return (dateutil.parser.parse(isotz))
 
-
-if __name__ == "__main__":
+def main():
+    
     # Initial installation check
     if (verify_installation_status()):
         from profile_settings import ProfileSettings
@@ -102,3 +102,7 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()

@@ -46,7 +46,7 @@ setup(name=name,
         "tinydb",
         'bcrypt'
         ],
-    packages=find_packages(),
+    packages=find_packages('mygnuhealth'),
     include_package_data=True,
     zip_safe=False,
 )

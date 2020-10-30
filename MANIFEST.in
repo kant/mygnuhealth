@@ -1,12 +1,12 @@
 global-include *.py
-global-include *.cfg
 global-include *.conf
 global-include *.rst
 
-include images/*.png
-include images/*.svg
+include mygnuhealth/doc/*.rst
+include mygnuhealth/images/*.png
+include mygnuhealth/images/*.svg
 
-include qml/*.qml
+include mygnuhealth/qml/*.qml
 
 include MANIFEST.in
 include LICENSE
