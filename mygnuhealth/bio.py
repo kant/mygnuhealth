@@ -1,11 +1,11 @@
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
-from myghconf import dbfile
+from mygnuhealth.myghconf import dbfile
 import datetime
 import matplotlib.pyplot as plt
 import io
 import base64
-from core import datefromisotz
+from mygnuhealth.core import datefromisotz
 
 class GHBio(QObject):
     def __init__(self):

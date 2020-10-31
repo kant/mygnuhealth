@@ -1,10 +1,9 @@
-global-include *.py
-global-include *.conf
-global-include *.rst
-
 include mygnuhealth/doc/*.rst
 include mygnuhealth/images/*.png
 include mygnuhealth/images/*.svg
+include mygnuhealth/*.py
+
+include bin/mygnuhealth
 
 include mygnuhealth/qml/*.qml
 

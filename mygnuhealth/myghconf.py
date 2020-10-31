@@ -32,7 +32,7 @@ from tinydb import TinyDB, Query
 import configparser
 
 homedir = str(Path.home())
-gh_dir = os.path.join(homedir, 'mygnuhealth')
+gh_dir = os.path.join(homedir, 'mygh')
 config_file = os.path.join(gh_dir, 'ghealth.conf')
 dbfile = os.path.join(gh_dir, 'ghealth.db')
 

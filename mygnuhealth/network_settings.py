@@ -1,7 +1,7 @@
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
-from myghconf import dbfile
-from fedlogin import test_federation_connection as fc
+from mygnuhealth.myghconf import dbfile
+from mygnuhealth.fedlogin import test_federation_connection as fc
 import datetime
 import bcrypt
 

@@ -1,6 +1,6 @@
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
-from myghconf import dbfile
+from mygnuhealth.myghconf import dbfile
 import datetime
 
 class BloodPressure(QObject):

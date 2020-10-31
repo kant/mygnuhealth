@@ -28,11 +28,12 @@
 ##############################################################################
 
 import sys
+import os
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QObject, QUrl, Signal, Slot
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
-from myghconf import verify_installation_status
+from mygnuhealth.myghconf import verify_installation_status
 
 import dateutil.parser
 
@@ -48,15 +49,15 @@ def main():
     
     # Initial installation check
     if (verify_installation_status()):
-        from profile_settings import ProfileSettings
-        from network_settings import NetworkSettings
-        from ghlogin import GHLogin
-        from bio import GHBio
+        from mygnuhealth.profile_settings import ProfileSettings
+        from mygnuhealth.network_settings import NetworkSettings
+        from mygnuhealth.ghlogin import GHLogin
+        from mygnuhealth.bio import GHBio
 
-        from bloodpressure import BloodPressure
-        from glucose import Glucose
-        from weight import Weight
-        from osat import Osat
+        from mygnuhealth.bloodpressure import BloodPressure
+        from mygnuhealth.glucose import Glucose
+        from mygnuhealth.weight import Weight
+        from mygnuhealth.osat import Osat
 
     app = QApplication(sys.argv)
 
@@ -95,9 +96,13 @@ def main():
 
     engine = QQmlApplicationEngine()
 
-    url = QUrl("qml/main.qml")
+    basePath=os.path.abspath(os.path.dirname(__file__))
+    
+    url = QUrl('file://'+basePath+'/qml/main.qml')
     engine.load(url)
 
+    
+    
     if not engine.rootObjects():
         sys.exit(-1)
 

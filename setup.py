@@ -38,6 +38,7 @@ setup(name=name,
         'Natural Language :: English'
         ],
     platforms='any',
+    scripts=['bin/mygnuhealth'],
     license='GPL v3+',
     python_requires='>=3.6,<4',
     install_requires=[
@@ -46,7 +47,7 @@ setup(name=name,
         "tinydb",
         'bcrypt'
         ],
-    packages=find_packages('mygnuhealth'),
+    packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
 )
