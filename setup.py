@@ -53,6 +53,6 @@ setup(name=name,
     data_files = [
         ('share/applications', ['org.gnuhealth.my.desktop']),
         ('share/metainfo', ['org.gnuhealth.my.metainfo.xml']),
-        ('share/icons/hicolor/512x512/apps/', ['mygnuhealth/images/my-gnu-health.png']),
+        ('share/icons/hicolor/scalable/apps/', ['mygnuhealth/images/mygnuhealth.svg']),
     ]
 )
