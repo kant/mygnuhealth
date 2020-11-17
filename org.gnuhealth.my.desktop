@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MyGNUHealth
+GenericName=Personal Health Record
+Comment=GNU Health Personal Health Record
+Keywords=Healthcare;Medicine;Bioinformatics;Management;Enterprise;ERP;Framework;Client;
+Exec=mygnuhealth %u
+Icon=my-gnu-health
+Terminal=false
+MimeType=application/tryton;
+Categories=Office;Finance;
