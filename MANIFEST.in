@@ -3,6 +3,9 @@ include mygnuhealth/images/*.png
 include mygnuhealth/images/*.svg
 include mygnuhealth/*.py
 
+include org.gnuhealth.my.metainfo.xml
+include org.gnuhealth.my.desktop
+
 include bin/mygnuhealth
 
 include mygnuhealth/qml/*.qml
