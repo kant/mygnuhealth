@@ -97,12 +97,9 @@ def main():
     engine = QQmlApplicationEngine()
 
     basePath=os.path.abspath(os.path.dirname(__file__))
-    
     url = QUrl('file://'+basePath+'/qml/main.qml')
     engine.load(url)
 
-    
-    
     if not engine.rootObjects():
         sys.exit(-1)
 

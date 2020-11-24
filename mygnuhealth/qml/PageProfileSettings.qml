@@ -21,15 +21,32 @@ title: qsTr("MyGNUHealth Profile Settings")
         anchors.fill: parent
 
         TextField {
-            id: txtUserPassword
+            id: userPassword
             Layout.alignment: Qt.AlignHCenter
-            placeholderText: qsTr("Key")
+            placeholderText: qsTr("Current Key")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
+            Kirigami.FormData.label: qsTr("Current key")
+        }
+
+        TextField {
+            id: newPassword1
+            Layout.alignment: Qt.AlignHCenter
+            placeholderText: qsTr("New Password")
+            horizontalAlignment: TextInput.AlignHCenter
+            echoMode: TextInput.Password
+            Kirigami.FormData.label: qsTr("New password")
             focus: true
-            //onAccepted: {
-            //    network_settings.getKey(txtUserPassword.text);
-            //}
+        }
+
+        TextField {
+            id: newPassword2
+            Layout.alignment: Qt.AlignHCenter
+            placeholderText: qsTr("Repeat")
+            horizontalAlignment: TextInput.AlignHCenter
+            echoMode: TextInput.Password
+            Kirigami.FormData.label: qsTr("Repeat")
+            focus: true
         }
 
 
@@ -40,7 +57,8 @@ title: qsTr("MyGNUHealth Profile Settings")
             text: qsTr("Done")
             flat: false
             onClicked: {
-                profile_settings.getvals(txtUserPassword.text);
+                profile_settings.getvals(userPassword.text,newPassword1.text,
+                                         newPassword2.text);
             }
 
         }

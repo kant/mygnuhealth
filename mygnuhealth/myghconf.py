@@ -35,7 +35,7 @@ homedir = str(Path.home())
 gh_dir = os.path.join(homedir, 'mygh')
 config_file = os.path.join(gh_dir, 'ghealth.conf')
 dbfile = os.path.join(gh_dir, 'ghealth.db')
-
+GH_KEY = "mygh"
 
 def check_inst_dir():
     if (os.path.isdir(gh_dir)):
@@ -63,15 +63,6 @@ def check_db():
         db = TinyDB(dbfile)
         init_db(db)
 
-def validate_password():
-    passwd = getpass.getpass()
-    print ("Again")
-    passwd2 = getpass.getpass()
-    if (passwd != passwd2):
-        print ("Password mismatch")
-        return validate_password()
-    return passwd
-
 def set_default_config_file():
     config = configparser.ConfigParser()
     config.read(config_file)
@@ -82,11 +73,8 @@ def set_default_config_file():
     output_file = open(config_file,'w')
     config.write(output_file)
 
-
-
 def init_db(db):
-    gh_key = validate_password()
-    encrypted_key = bcrypt.hashpw(gh_key.encode('utf-8'), \
+    encrypted_key = bcrypt.hashpw(GH_KEY.encode('utf-8'), \
         bcrypt.gensalt()).decode('utf-8')
 
     credentials = db.table('credentials')
