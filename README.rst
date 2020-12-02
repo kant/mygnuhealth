@@ -3,8 +3,8 @@
 MyGNUHealth: The GNU Health Personal Health Record (PHR)
 =======================================================================
 
-MyGNUHealth is the GNUHealth Personal Health Record application that integrates 
-with the GNU Health Federation, focused in mobile devices.
+MyGNUHealth is the GNUHealth Personal Health Record application for desktop
+and mobile devices that integrates with the GNU Health Federation.
 
 
 Installation
@@ -18,11 +18,12 @@ Technology
 ----------
 MyGNUHealth is intended for Libre operating systems. (BSD, GNU/Linux..)
 It uses the Qt and Kirigami frameworks, and can be installed in desktops
-(KDE) and mobile devices (eg, PinePhone).
+(KDE Plasma) and mobile devices (eg, PinePhone).
 
 
 Development
 -----------
+
 The development of MyGNUHealth is on GNU Savannah, using the Mercurial repository.
 
 Tasks, bugs and mailing lists will be on health-dev@gnu.org , for development.
@@ -92,10 +93,10 @@ for the local team, to build local capacity and make your project sustainable.
 
 Please contect us and we'll back to you as soon as possible::
 
- Thank you !
- Dr. Luis Falcón, MD, MSc
- Author and project leader
- falcon@gnuhealth.org
+Thank you !
+Dr. Luis Falcón, MD, MSc
+Author and project leader
+falcon@gnuhealth.org
 
 
 Email
