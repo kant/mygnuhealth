@@ -53,8 +53,27 @@ check your current operating system or distribution.
 Using MyGNUHealth
 =================
 
+Starting up the application
+---------------------------
+|InitialScreen|
+
+Double click or tap into the MyGNUHealth icon on your mobile device or desktop.
+You will be presented with the welcoming screen.
+
+
+Touch or click on the initial screen and you'll be ready to sign into the PHR.
+
 Signing in to MyGNUHealth
 -------------------------
+|LoginScreen|
+
+The first time you use the application, the initial key is *mygh*
+(no quotes).
+
+
+.. Note:: For security reasons, you're strongly adviced to change the personal
+    key once you log in. You can change your key in the **profile setttings**
+
 
 The main screen
 ---------------
@@ -64,3 +83,5 @@ The main screen
 
 
 .. |MyGNUHealth| image:: ./images/mygnuhealth.png
+.. |InitialScreen| image:: ./images/initial_screen.png
+.. |LoginScreen| image:: ./images/login_screen.png
