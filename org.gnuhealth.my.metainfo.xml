@@ -1,24 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <component type="desktop-application">
   <id>org.gnuhealth.my</id>
-
   <name>MyGNUHealth</name>
+  <name xml:lang="ca">MyGNUHealth</name>
+  <name xml:lang="ca-valencia">MyGNUHealth</name>
+  <name xml:lang="es">MyGNUHealth</name>
+  <name xml:lang="nl">MyGNUHealth</name>
+  <name xml:lang="uk">MyGNUHealth</name>
+  <name xml:lang="x-test">xxMyGNUHealthxx</name>
   <summary>GNU Health Personal Health Record</summary>
-
+  <summary xml:lang="ca">Registre personal de salut GNU Health</summary>
+  <summary xml:lang="ca-valencia">Registre personal de salut GNU Health</summary>
+  <summary xml:lang="es">Registro de salud personal de GNU</summary>
+  <summary xml:lang="nl">GNU Health persoonlijk medisch document</summary>
+  <summary xml:lang="uk">Особистий запис стану здоров'я GNU Health</summary>
+  <summary xml:lang="x-test">xxGNU Health Personal Health Recordxx</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
-
   <recommends>
     <control>pointing</control>
     <control>keyboard</control>
     <control>touch</control>
   </recommends>
-
   <description>
     <p>
       Tracking personal health records.
     </p>
+    <p xml:lang="ca">Seguiment dels registres personals de salut.</p>
+    <p xml:lang="ca-valencia">Seguiment dels registres personals de salut.</p>
+    <p xml:lang="es">Seguimiento de registros de salud personal.</p>
+    <p xml:lang="nl">Persoonlijke medische documenten volgen.</p>
+    <p xml:lang="uk">Стеження за записами особистого стану здоров'я.</p>
+    <p xml:lang="x-test">xxTracking personal health records.xx</p>
   </description>
-
   <launchable type="desktop-id">org.gnuhealth.my.desktop</launchable>
 </component>
