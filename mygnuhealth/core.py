@@ -36,8 +36,8 @@ def datefromisotz (isotz):
     if isotz:
         return (dateutil.parser.parse(isotz))
 
-def get_master_key(db):
+def get_personal_key(db):
     credentials = db.table('credentials')
     # Credentials table holds a singleton, so only one record
-    master_key = credentials.all()[0]['master_key']
-    return master_key.encode()
+    personal_key = credentials.all()[0]['personal_key']
+    return personal_key.encode()

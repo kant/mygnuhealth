@@ -2,7 +2,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 import bcrypt
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
-from mygnuhealth.core import get_master_key
+from mygnuhealth.core import get_personal_key
 
 class GHLogin(QObject):
     def __init__(self):
@@ -11,11 +11,11 @@ class GHLogin(QObject):
     db = TinyDB(dbfile)
 
     '''
-    def get_master_key(self, db):
+    def get_personal_key(self, db):
         credentials = db.table('credentials')
         # Credentials table holds a singleton, so only one record
-        master_key = credentials.all()[0]['master_key']
-        return master_key.encode()
+        personal_key = credentials.all()[0]['personal_key']
+        return personal_key.encode()
     '''
 
     @Slot (str)
@@ -23,10 +23,10 @@ class GHLogin(QObject):
 
         key = key.encode()
 
-        # master_key = self.get_master_key(self.db)
-        master_key = get_master_key(self.db)
+        # personal_key = self.get_personal_key(self.db)
+        personal_key = get_personal_key(self.db)
 
-        if (bcrypt.checkpw(key, master_key)):
+        if (bcrypt.checkpw(key, personal_key)):
             print ("Login correct - Move to main PHR page")
             self.loginOK.emit()
 

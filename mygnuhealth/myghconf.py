@@ -78,7 +78,7 @@ def init_db(db):
         bcrypt.gensalt()).decode('utf-8')
 
     credentials = db.table('credentials')
-    credentials.insert({'master_key':encrypted_key})
+    credentials.insert({'personal_key':encrypted_key})
 
     print ("MyGNUHealth DB initialized !")
 
