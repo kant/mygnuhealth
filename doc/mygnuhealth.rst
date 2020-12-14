@@ -77,11 +77,26 @@ The first time you use the application, the initial key is *mygh*
 
 The main screen
 ---------------
+|MainScreen|
+
+Once you sign in, you are presented to the MyGNUHealth main screen, with the 
+main components:
+
+* **Bio**: Vital signs and other clinical information history
+* **Book of Life**: The book of life is your personal health diary, made of 
+    *Pages of Life*. From the genetic and molecular components to the social 
+    events throughout your life that make you a unique individual.
+* **Documents**: In this section you will be able to add files into the persnal
+    database. In some cases, you will find useful to link them to specific
+    *Page of Life*
+* **Emergency**: It will contact the number you have registered as the emergency
+    number.
+
+.. note:: The main screen components and layout might change from one release
+    to another.
 
 
-
-
-
+.. |MainScreen| image:: ./images/main_screen.png
 .. |MyGNUHealth| image:: ./images/mygnuhealth.png
 .. |InitialScreen| image:: ./images/initial_screen.png
 .. |LoginScreen| image:: ./images/login_screen.png

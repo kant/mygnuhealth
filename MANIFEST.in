@@ -1,4 +1,5 @@
-include mygnuhealth/doc/*.rst
+include doc/*.rst
+include doc/images/*.png
 include mygnuhealth/images/*.png
 include mygnuhealth/images/*.svg
 include mygnuhealth/*.py
