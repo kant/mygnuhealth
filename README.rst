@@ -93,10 +93,9 @@ for the local team, to build local capacity and make your project sustainable.
 
 Please contect us and we'll back to you as soon as possible::
 
-Thank you !
-Dr. Luis Falcón, MD, MSc
-Author and project leader
-falcon@gnuhealth.org
+ Dr. Luis Falcón, MD, MSc
+ Author and project leader
+ falcon@gnuhealth.org
 
 
 Email
