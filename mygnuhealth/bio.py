@@ -34,15 +34,18 @@ class GHBio(QObject):
         # Extracts the latest readings from BP
         bphist = self.read_bp()
         hrhist = self.read_hr()
-        bp = bphist[-1]  # Get the latest (newest) record
-        hr = hrhist[-1]
+        bpobj=['','','',''] # Initialize to empty string to avoid undefined vals
+        if (bphist and hrhist): 
+            bp = bphist[-1]  # Get the latest (newest) record
+            hr = hrhist[-1]
 
-        #dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
-        dateobj =  datefromisotz(bp['timestamp'])
-        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+            #dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
+            dateobj =  datefromisotz(bp['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
-        bpobj = [str(date_repr), str(bp['systolic']), str(bp['diastolic']),
-                                     str(hr['heart_rate'])]
+            bpobj = [str(date_repr), str(bp['systolic']), str(bp['diastolic']),
+                                        str(hr['heart_rate'])]
+        
         return bpobj
 
     def getBPHist(self):
@@ -166,13 +169,14 @@ class GHBio(QObject):
     def getGlucose(self):
         # Extracts the latest readings from Glucose
         glucosehist = self.read_glucose()
-        glucose = glucosehist[-1]  # Get the latest (newest) record
+        glucoseobj = ['','']
+        if (glucosehist): # Enter this block if there is a history
+            glucose = glucosehist[-1]  # Get the latest (newest) record
+            #dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
+            dateobj =  datefromisotz(glucose['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
-        #dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
-        dateobj =  datefromisotz(glucose['timestamp'])
-        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
-
-        glucoseobj = [str(date_repr), str(glucose['glucose'])]
+            glucoseobj = [str(date_repr), str(glucose['glucose'])]
         return glucoseobj
 
     def getGlucoseHist(self):
@@ -234,13 +238,15 @@ class GHBio(QObject):
     def getWeight(self):
         # Extracts the latest readings from Weight
         weighthist = self.read_weight()
-        weight = weighthist[-1]  # Get the latest (newest) record
+        weightobj = ['','']
+        if (weighthist):
+            weight = weighthist[-1]  # Get the latest (newest) record
 
-        #dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
-        dateobj =  datefromisotz(weight['timestamp'])
-        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+            #dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
+            dateobj =  datefromisotz(weight['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
-        weightobj = [str(date_repr), str(weight['weight'])]
+            weightobj = [str(date_repr), str(weight['weight'])]
         return weightobj
 
     def getWeightHist(self):
@@ -304,13 +310,14 @@ class GHBio(QObject):
     def getOsat(self):
         # Extracts the latest readings from Osat
         osathist = self.read_osat()
-        osat = osathist[-1]  # Get the latest (newest) record
+        osatobj = ['','']
+        if (osathist):
+            osat = osathist[-1]  # Get the latest (newest) record
 
-        #dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
-        dateobj =  datefromisotz(osat['timestamp'])
-        date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
-
-        osatobj = [str(date_repr), str(osat['osat'])]
+            #dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
+            dateobj =  datefromisotz(osat['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+            osatobj = [str(date_repr), str(osat['osat'])]
         return osatobj
 
     def getOsatHist(self):
