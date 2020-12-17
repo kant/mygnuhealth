@@ -24,7 +24,7 @@ It uses the Qt and Kirigami frameworks, and can be installed in desktops
 Development
 -----------
 
-The development of MyGNUHealth is on GNU Savannah, using the Mercurial repository.
+The development of MyGNUHealth resides now on **KDE**
 
 Tasks, bugs and mailing lists will be on health-dev@gnu.org , for development.
 
@@ -47,8 +47,8 @@ https://en.wikibooks.org/wiki/GNU_Health
 Support GNU Health
 -------------------
 
-GNU Health is a project of GNU Solidario. GNU Solidario is an Non-profit
-Non-goverment-Organization (NGO) that works globally, focused on Social Medicine.
+GNU Health is a project of **GNU Solidario**. GNU Solidario is an humanitarian non-profit
+that works globally, focused on Social Medicine.
 
 Health and education are the basis for the development and dignity of societies.
 
