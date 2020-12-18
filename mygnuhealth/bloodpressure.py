@@ -2,6 +2,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
 import datetime
+from uuid import uuid4
 
 class BloodPressure(QObject):
     def __init__(self):
@@ -15,14 +16,27 @@ class BloodPressure(QObject):
         current_date = datetime.datetime.now().isoformat()
 
         if ((systolic > 0) and (diastolic > 0)):
+            event_id = str(uuid4())
+            synced = False
             blood_pressure.insert({'timestamp': current_date,
+                                   'event_id': event_id,
+                                   'synced': synced,
                                    'systolic': systolic,
                                    'diastolic': diastolic})
-            print ("Saved blood pressure",systolic, diastolic, current_date)
+
+            print ("Saved blood pressure",event_id, synced, systolic,
+                   diastolic, current_date)
 
         if (heart_rate > 0):
-            hr.insert ({'timestamp':current_date, 'heart_rate':heart_rate})
-            print ("Saved Heart rate", heart_rate, current_date)
+            event_id = str(uuid4())
+            synced = False
+            hr.insert ({'timestamp':current_date,
+                        'event_id': event_id,
+                        'synced': synced,
+                        'heart_rate':heart_rate})
+
+            print ("Saved Heart rate", event_id, synced,
+                   heart_rate, current_date)
 
 
     @Slot (int, int, int)

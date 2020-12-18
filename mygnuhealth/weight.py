@@ -2,6 +2,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
 import datetime
+from uuid import uuid4
 
 class Weight(QObject):
     def __init__(self):
@@ -14,10 +15,14 @@ class Weight(QObject):
         current_date = datetime.datetime.now().isoformat()
 
         if ((body_weight > 0)):
+            event_id = str(uuid4())
+            synced = False
             weight.insert({'timestamp': current_date,
-                                   'weight': body_weight})
+                           'event_id': event_id,
+                           'synced': synced,
+                           'weight': body_weight})
 
-            print ("Saved weight",body_weight, current_date)
+            print ("Saved weight",event_id, synced, body_weight, current_date)
 
 
     @Slot (float)
@@ -25,5 +30,5 @@ class Weight(QObject):
         self.insert_values(body_weight)
         self.setOK.emit()
 
-    # Signal to emit to QML if the body pressure values were stored correctly
+    # Signal to emit to QML if the body weight values were stored correctly
     setOK = Signal()

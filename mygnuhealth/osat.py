@@ -2,6 +2,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
 import datetime
+from uuid import uuid4
 
 class Osat(QObject):
     def __init__(self):
@@ -14,10 +15,14 @@ class Osat(QObject):
         current_date = datetime.datetime.now().isoformat()
 
         if ((hb_osat > 0)):
+            event_id = str(uuid4())
+            synced = False
             osat.insert({'timestamp': current_date,
-                                   'osat': hb_osat})
+                         'event_id': event_id,
+                         'synced': synced,
+                         'osat': hb_osat})
 
-            print ("Saved osat",hb_osat, current_date)
+            print ("Saved osat",event_id, synced, hb_osat, current_date)
 
 
     @Slot (int)
@@ -25,5 +30,5 @@ class Osat(QObject):
         self.insert_values(hb_osat)
         self.setOK.emit()
 
-    # Signal to emit to QML if the body pressure values were stored correctly
+    # Signal to emit to QML if the Osat values were stored correctly
     setOK = Signal()
