@@ -14,7 +14,7 @@ def test_federation_connection(protocol,host, port, acct, passwd):
     try:
         conn = requests.get(url, auth=(acct, passwd), verify=False)
 
-    except BaseException as e:
+    except Exception as e:
         print (f"ERROR authenticating to Server: {e}")
         login_status = -2
 

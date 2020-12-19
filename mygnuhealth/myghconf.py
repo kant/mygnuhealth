@@ -44,7 +44,7 @@ def check_inst_dir():
         print("Initializing MyGNUHealth directory")
         try:
             os.mkdir(gh_dir)
-        except BaseException as e:
+        except Exception as e:
             print(f"Error initializing MyGNUHealth directory: {e}")
 
 def check_config():
