@@ -1,12 +1,11 @@
+import datetime
+from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
-import datetime
-from uuid import uuid4
+
 
 class Osat(QObject):
-    def __init__(self):
-        QObject.__init__(self)
 
     db = TinyDB(dbfile)
 
@@ -14,7 +13,7 @@ class Osat(QObject):
         osat = self.db.table('osat')
         current_date = datetime.datetime.now().isoformat()
 
-        if ((hb_osat > 0)):
+        if hb_osat > 0:
             event_id = str(uuid4())
             synced = False
             osat.insert({'timestamp': current_date,

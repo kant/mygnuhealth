@@ -32,9 +32,9 @@ import dateutil.parser
 #Common methods
 #Use this method to be compatible with Python 3.6
 # datetime fromisoformat is not present until Python 3.7
-def datefromisotz (isotz):
+def datefromisotz(isotz):
     if isotz:
-        return (dateutil.parser.parse(isotz))
+        return dateutil.parser.parse(isotz)
 
 def get_personal_key(db):
     credentials = db.table('credentials')

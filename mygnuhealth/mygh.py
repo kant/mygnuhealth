@@ -29,21 +29,20 @@
 
 import sys
 import os
+import dateutil.parser
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QObject, QUrl, Signal, Slot
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 from mygnuhealth.myghconf import verify_installation_status
 
-import dateutil.parser
-
 
 #Common methods
 #Use this method to be compatible with Python 3.6
 # datetime fromisoformat is not present until Python 3.7
-def datefromisotz (isotz):
+def datefromisotz(isotz):
     if isotz:
-        return (dateutil.parser.parse(isotz))
+        return dateutil.parser.parse(isotz)
 
 def main():
     
@@ -96,8 +95,8 @@ def main():
 
     engine = QQmlApplicationEngine()
 
-    basePath=os.path.abspath(os.path.dirname(__file__))
-    url = QUrl('file://'+basePath+'/qml/main.qml')
+    base_path = os.path.abspath(os.path.dirname(__file__))
+    url = QUrl(f'file://{base_path}/qml/main.qml')
     engine.load(url)
 
     if not engine.rootObjects():

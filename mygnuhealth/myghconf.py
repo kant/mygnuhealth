@@ -38,28 +38,28 @@ dbfile = os.path.join(gh_dir, 'ghealth.db')
 GH_KEY = "mygh"
 
 def check_inst_dir():
-    if (os.path.isdir(gh_dir)):
-        print ("Directory exists... skipping\n")
+    if os.path.isdir(gh_dir):
+        print("Directory exists... skipping\n")
     else:
-        print ("Initializing MyGNUHealth directory")
+        print("Initializing MyGNUHealth directory")
         try:
             os.mkdir(gh_dir)
-        except:
-            print ("Error initializing MyGNUHealth directory")
+        except BaseException as e:
+            print(f"Error initializing MyGNUHealth directory: {e}")
 
 def check_config():
     if os.path.isfile(config_file):
-        print ("Found myGNUHealth configuration file.. skipping")
+        print("Found myGNUHealth configuration file.. skipping")
     else:
-        print ("Configuration file not found. Writing defaults")
+        print("Configuration file not found. Writing defaults")
         set_default_config_file()
 
 def check_db():
-    print ("Verifying MyGNUHealth Database.....")
+    print("Verifying MyGNUHealth Database.....")
     if os.path.isfile(dbfile):
-        print ("MyGNUHealth DB exists.. skipping")
+        print("MyGNUHealth DB exists.. skipping")
     else:
-        print ("DB file not found. Initializing MyGNUHealth...")
+        print("DB file not found. Initializing MyGNUHealth...")
         db = TinyDB(dbfile)
         init_db(db)
 
@@ -69,22 +69,22 @@ def set_default_config_file():
     if not 'security' in config.sections():
         config.add_section('security')
 
-    config.set ('security','key_method','bcrypt')
-    output_file = open(config_file,'w')
+    config.set('security','key_method','bcrypt')
+    output_file = open(config_file, 'w')
     config.write(output_file)
 
 def init_db(db):
-    encrypted_key = bcrypt.hashpw(GH_KEY.encode('utf-8'), \
+    encrypted_key = bcrypt.hashpw(GH_KEY.encode('utf-8'),
         bcrypt.gensalt()).decode('utf-8')
 
     credentials = db.table('credentials')
-    credentials.insert({'personal_key':encrypted_key})
+    credentials.insert({'personal_key': encrypted_key})
 
-    print ("MyGNUHealth DB initialized !")
+    print("MyGNUHealth DB initialized !")
 
 
 def verify_installation_status():
-    print ("Initializing myGNUHealth PHR....")
+    print("Initializing myGNUHealth PHR....")
     check_inst_dir()
     check_config()
     check_db()

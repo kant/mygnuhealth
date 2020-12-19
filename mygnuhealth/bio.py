@@ -1,13 +1,15 @@
+import io
+import datetime
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
-from mygnuhealth.myghconf import dbfile
-import datetime
 import matplotlib.pyplot as plt
-import io
 import base64
 from mygnuhealth.core import datefromisotz
+from mygnuhealth.myghconf import dbfile
+
 
 class GHBio(QObject):
+
     def __init__(self):
         QObject.__init__(self)
 
@@ -22,7 +24,7 @@ class GHBio(QObject):
         #Retrieve the BP history
         blood_pressure = self.db.table('bloodpressure')
         bphist = blood_pressure.all()
-        return (bphist)
+        return bphist
 
     def read_hr(self):
         #Retrieve the HR history
@@ -34,8 +36,8 @@ class GHBio(QObject):
         # Extracts the latest readings from BP
         bphist = self.read_bp()
         hrhist = self.read_hr()
-        bpobj=['','','',''] # Initialize to empty string to avoid undefined vals
-        if (bphist and hrhist): 
+        bpobj = ['', '', '', ''] # Initialize to empty string to avoid undefined vals
+        if bphist and hrhist: 
             bp = bphist[-1]  # Get the latest (newest) record
             hr = hrhist[-1]
 
@@ -78,9 +80,8 @@ class GHBio(QObject):
         bp_date = []
         lastreading=''
         for element in bphist:
-            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
-            dateobj =  datefromisotz(element['timestamp'])
 
+            dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
@@ -101,14 +102,14 @@ class GHBio(QObject):
         axs[1].set_ylabel('Diastolic', size=13)
 
         fig.autofmt_xdate()
-        fig.suptitle("Blood Pressure (mm Hg)",size=20)
+        fig.suptitle("Blood Pressure (mm Hg)", size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
         image = "data:image/svg+xml;base64," + \
             base64.b64encode(holder.getvalue()).decode()
 
         holder.close()
-        return (image)
+        return image
 
 
     def HRplot(self):
@@ -118,7 +119,6 @@ class GHBio(QObject):
         hr_date= []
         lastreading=''
         for element in hrhist:
-            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
             dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
@@ -133,9 +133,9 @@ class GHBio(QObject):
 
         ax.plot(hr_date, hr, color="orange")
 
-        ax.set_ylabel('Frequency',size=13)
+        ax.set_ylabel('Frequency', size=13)
         fig.autofmt_xdate()
-        fig.suptitle("Heart Rate (bpm)",size=20)
+        fig.suptitle("Heart Rate (bpm)", size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
@@ -143,7 +143,7 @@ class GHBio(QObject):
             base64.b64encode(holder.getvalue()).decode()
 
         holder.close()
-        return (image)
+        return image
 
 
     def setBP(self, bp):
@@ -152,27 +152,26 @@ class GHBio(QObject):
         self.bpChanged.emit()
 
 
-
     # GLUCOSE
     def setGlucose(self, glucose):
         self.current_glucose = glucose
         # Call the notifying signal
         self.glucoseChanged.emit()
 
+
     def read_glucose(self):
         #Retrieve the blood glucose levels history
         glucose = self.db.table('glucose')
         glucosehist = glucose.all()
-        return (glucosehist)
+        return glucosehist
 
 
     def getGlucose(self):
         # Extracts the latest readings from Glucose
         glucosehist = self.read_glucose()
-        glucoseobj = ['','']
+        glucoseobj = ['', '']
         if (glucosehist): # Enter this block if there is a history
             glucose = glucosehist[-1]  # Get the latest (newest) record
-            #dateobj =  datetime.datetime.fromisoformat(glucose['timestamp'])
             dateobj =  datefromisotz(glucose['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
@@ -182,7 +181,6 @@ class GHBio(QObject):
     def getGlucoseHist(self):
         # Retrieves all the history and packages into an array.
         glucosehist = self.read_glucose()
-
         glucose = []
         for element in glucosehist:
             glucose.append(element['glucose'])
@@ -195,7 +193,6 @@ class GHBio(QObject):
         glucose_date= []
         lastreading=''
         for element in glucosehist:
-            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
             dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
@@ -220,7 +217,7 @@ class GHBio(QObject):
             base64.b64encode(holder.getvalue()).decode()
 
         holder.close()
-        return (image)
+        return image
 
     # WEIGHT
     def setWeight(self, weight):
@@ -238,7 +235,7 @@ class GHBio(QObject):
     def getWeight(self):
         # Extracts the latest readings from Weight
         weighthist = self.read_weight()
-        weightobj = ['','']
+        weightobj = ['', '']
         if (weighthist):
             weight = weighthist[-1]  # Get the latest (newest) record
 
@@ -293,7 +290,6 @@ class GHBio(QObject):
         return (image)
 
 
-
     # OSAT
     def setOsat(self, osat):
         self.current_osat = osat
@@ -304,13 +300,13 @@ class GHBio(QObject):
         #Retrieve the blood osat levels history
         osat = self.db.table('osat')
         osathist = osat.all()
-        return (osathist)
+        return osathist
 
 
     def getOsat(self):
         # Extracts the latest readings from Osat
         osathist = self.read_osat()
-        osatobj = ['','']
+        osatobj = ['', '']
         if (osathist):
             osat = osathist[-1]  # Get the latest (newest) record
 
@@ -336,15 +332,10 @@ class GHBio(QObject):
         osat_date= []
         lastreading=''
         for element in osathist:
-            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
             dateobj =  datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
-            # Only print one value per day to avoid artifacts in plotting.
-            #if (lastreading != date_repr):
             osat_date.append(dateobj)
             osat.append(element['osat'])
-
-            #lastreading = date_repr
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)

@@ -1,12 +1,11 @@
+import datetime
+from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
-import datetime
-from uuid import uuid4
+
 
 class Weight(QObject):
-    def __init__(self):
-        QObject.__init__(self)
 
     db = TinyDB(dbfile)
 
@@ -14,7 +13,7 @@ class Weight(QObject):
         weight = self.db.table('weight')
         current_date = datetime.datetime.now().isoformat()
 
-        if ((body_weight > 0)):
+        if body_weight > 0:
             event_id = str(uuid4())
             synced = False
             weight.insert({'timestamp': current_date,
@@ -22,11 +21,11 @@ class Weight(QObject):
                            'synced': synced,
                            'weight': body_weight})
 
-            print ("Saved weight",event_id, synced, body_weight, current_date)
+            print("Saved weight", event_id, synced, body_weight, current_date)
 
 
-    @Slot (float)
-    def getvals(self,body_weight):
+    @Slot(float)
+    def getvals(self, body_weight):
         self.insert_values(body_weight)
         self.setOK.emit()
 

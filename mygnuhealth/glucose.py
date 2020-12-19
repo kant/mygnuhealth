@@ -1,12 +1,10 @@
+import datetime
+from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
-import datetime
-from uuid import uuid4
 
 class Glucose(QObject):
-    def __init__(self):
-        QObject.__init__(self)
 
     db = TinyDB(dbfile)
 
@@ -14,7 +12,7 @@ class Glucose(QObject):
         glucose = self.db.table('glucose')
         current_date = datetime.datetime.now().isoformat()
 
-        if ((blood_glucose > 0)):
+        if blood_glucose > 0:
             event_id = str(uuid4())
             synced = False
             glucose.insert({'timestamp': current_date,
@@ -26,8 +24,8 @@ class Glucose(QObject):
                    current_date)
 
 
-    @Slot (int)
-    def getvals(self,blood_glucose):
+    @Slot(int)
+    def getvals(self, blood_glucose):
         self.insert_values(blood_glucose)
         self.setOK.emit()
 
