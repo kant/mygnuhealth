@@ -4,12 +4,9 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.5 as Kirigami
 
 Kirigami.Page {
+    title: qsTr("Welcome to MyGNUHeath")
     ColumnLayout {
         anchors.fill: parent
-        Kirigami.Heading {
-            Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Welcome to")
-        }
         Image {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -17,9 +14,14 @@ Kirigami.Page {
             source: "../images/my-gnu-health.png"
             MouseArea {
                 anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageLogin.qml"))
+                onClicked: pageStack.replace(Qt.resolvedUrl("PageLogin.qml"))
             }
+        }
 
+        Button {
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Start")
+            onClicked: pageStack.replace(Qt.resolvedUrl("PageLogin.qml"))
         }
     }
 }
