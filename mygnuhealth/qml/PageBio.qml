@@ -4,10 +4,10 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.5 as Kirigami
 import GHBio 0.1
 
-Kirigami.Page
+Kirigami.ScrollablePage
 {
-id: biopage
-title: qsTr("GNU Health - BIO")
+    id: biopage
+    title: qsTr("GNU Health - BIO")
 
     GHBio { // GHBio object registered at main.py
         id: ghbio
@@ -17,16 +17,16 @@ title: qsTr("GNU Health - BIO")
         spacing: 5
 
         // Blood pressure / Heart Rate
-        Rectangle {
+        RowLayout {
             id:bpitem
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
+            Layout.fillWidth: true
             Layout.preferredHeight: 100
 
             Rectangle {
                 id:bprectangle
-                width: 100
-                height: 100
+                Layout.fillHeight: true
+                Layout.preferredWidth: 100
 
                 Image {
                     id: bpIcon
@@ -41,10 +41,9 @@ title: qsTr("GNU Health - BIO")
             }
             Rectangle {
                 id:bphist
-                width: 250
-                height: 100
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 // Layout.preferredWidth does not work here.
-                anchors.left: bprectangle.right
                 property var bpinfo: ghbio.bp
                 property var bpdate: bpinfo[0]
                 property var bpsystolic: bpinfo[1]
@@ -52,8 +51,8 @@ title: qsTr("GNU Health - BIO")
                 property var heartrate: bpinfo[3] + ' bpm'
 
                 MouseArea {
-                anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
                 }
 
                 Text {
@@ -94,15 +93,15 @@ title: qsTr("GNU Health - BIO")
 
         // GLUCOSE
 
-        Rectangle {
+        RowLayout {
             id:glucoseitem
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
             Layout.preferredHeight: 100
             Rectangle {
                 id:glucoserectangle
-                width: 100
-                height: 100
+                Layout.fillHeight: true
+                Layout.preferredWidth: 100
 
                 Image {
                     id: glucoseIcon
@@ -118,17 +117,15 @@ title: qsTr("GNU Health - BIO")
 
             Rectangle {
                 id:glucosehist
-                width: 250
-                height: 100
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 property var glucoseinfo: ghbio.glucose
                 property var glucosedate: glucoseinfo[0]
                 property var glucose: glucoseinfo[1]
 
-                anchors.left: glucoserectangle.right
-
                 MouseArea {
-                anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
                 }
 
                 Text {
@@ -161,15 +158,15 @@ title: qsTr("GNU Health - BIO")
 
         // WEIGHT
 
-        Rectangle {
+        RowLayout {
             id:weightitem
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
             Layout.preferredHeight: 100
             Rectangle {
                 id:weightrectangle
-                width: 100
-                height: 100
+                Layout.fillHeight: true
+                Layout.preferredWidth: 100
 
                 Image {
                     id: weightIcon
@@ -185,13 +182,12 @@ title: qsTr("GNU Health - BIO")
 
             Rectangle {
                 id:weighthist
-                width: 250
-                height: 100
                 property var weightinfo: ghbio.weight
                 property var weightdate: weightinfo[0]
                 property var weight: weightinfo[1]
 
-                anchors.left: weightrectangle.right
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 MouseArea {
                 anchors.fill: parent
@@ -228,15 +224,15 @@ title: qsTr("GNU Health - BIO")
 
         // OSAT
 
-        Rectangle {
+        RowLayout {
             id:osatitem
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
             Layout.preferredHeight: 100
             Rectangle {
                 id:osatrectangle
-                width: 100
-                height: 100
+                Layout.fillHeight: true
+                Layout.preferredWidth: 100
 
                 Image {
                     id: osatIcon
@@ -252,17 +248,16 @@ title: qsTr("GNU Health - BIO")
 
             Rectangle {
                 id:osathist
-                width: 250
-                height: 100
                 property var osatinfo: ghbio.osat
                 property var osatdate: osatinfo[0]
                 property var osat: osatinfo[1]
 
-                anchors.left: osatrectangle.right
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 MouseArea {
-                anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBioOsatChart.qml"))
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioOsatChart.qml"))
                 }
 
                 Text {
