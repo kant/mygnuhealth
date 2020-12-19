@@ -18,6 +18,10 @@ class GHLogin(QObject):
         if bcrypt.checkpw(key, personal_key):
             print("Login correct - Move to main PHR page")
             self.loginOK.emit()
+        else:
+            self.errorOccurred.emit()
+
 
     # Signal to emit to QML if the provided credentials are correct
     loginOK = Signal()
+    errorOccurred = Signal()

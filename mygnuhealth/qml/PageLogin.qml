@@ -9,11 +9,23 @@ Kirigami.Page
 id: loginPage
 title: qsTr("Login")
 
+    header: Control {
+        padding: Kirigami.Units.smallSpacing
+        contentItem: Kirigami.InlineMessage {
+            id: errorMessage
+            visible: false
+            text: qsTr("An error occured during login")
+            type: Kirigami.MessageType.Error
+            showCloseButton: true
+        }
+    }
+
     GHLogin { // FedLogin object registered at main.py to be used here
         id: ghlogin
         onLoginOK: {
             pageStack.push(Qt.resolvedUrl("PagePhr.qml"))
         }
+        onErrorOccurred: errorMessage.visible = true
     }
 
     ColumnLayout {
