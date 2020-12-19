@@ -22,7 +22,7 @@ Kirigami.Page {
     GHLogin { // FedLogin object registered at main.py to be used here
         id: ghlogin
         onLoginOK: {
-            pageStack.push(Qt.resolvedUrl("PagePhr.qml"))
+            pageStack.replace(Qt.resolvedUrl("PagePhr.qml"))
         }
         onErrorOccurred: errorMessage.visible = true
     }
