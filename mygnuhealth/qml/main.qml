@@ -33,13 +33,7 @@ Kirigami.ApplicationWindow {
 
     width: app.initialGeometry.width>=10 ? app.initialGeometry.width : Kirigami.Units.gridUnit * 45
     height: app.initialGeometry.height>=10 ? app.initialGeometry.height : Kirigami.Units.gridUnit * 30
-
     minimumWidth: 400
     minimumHeight: 600
-
-    maximumWidth: 720
-    maximumHeight: 1440
-
     pageStack.initialPage: PageInitial {}
-
 }
