@@ -4,17 +4,16 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
 
-Kirigami.Page
+Kirigami.ScrollablePage
 {
-id: phrpage
+    id: phrpage
     ColumnLayout {
         spacing: 10
         Rectangle {
             id:biorectangle
             color: "#108498"
             Layout.alignment: Qt.AlignCenter
-
-            Layout.preferredWidth: 350
+            Layout.fillWidth: true
             Layout.preferredHeight: 100
             radius: 10
 
@@ -33,7 +32,7 @@ id: phrpage
             id:psychorectangle
             color: "#108498"
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
+            Layout.fillWidth: true
             Layout.preferredHeight: 100
 
             radius: 10
@@ -56,7 +55,7 @@ id: phrpage
             id:documentsrectangle
             color: "#108498"
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
+            Layout.fillWidth: true
             Layout.preferredHeight: 100
 
             radius: 10
@@ -79,8 +78,7 @@ id: phrpage
             id:emergencyrectangle
             color: "#108498"
             Layout.alignment: Qt.AlignCenter
-
-            Layout.preferredWidth: 350
+            Layout.fillWidth: true
             Layout.preferredHeight: 100
             radius: 10
 
