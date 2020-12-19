@@ -28,6 +28,10 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.5 as Kirigami
 
 Kirigami.ApplicationWindow {
+    id: root
+
+    property bool isLoggedIn: false
+
     visible: true
     title: qsTr("MyGNUHealth")
 
@@ -36,4 +40,14 @@ Kirigami.ApplicationWindow {
     minimumWidth: 400
     minimumHeight: 600
     pageStack.initialPage: PageInitial {}
+
+    globalDrawer: GHDrawer {
+        isLoggedIn: root.isLoggedIn
+        onLogout: {
+            // Clear the stack and go to the initial page
+            pageStack.clear()
+            pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
+            root.isLoggedIn = false;
+        }
+    }
 }

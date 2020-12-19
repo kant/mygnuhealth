@@ -4,15 +4,14 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import ProfileSettings 0.1
 
-Kirigami.Page
-{
-id: phrpage
-title: qsTr("MyGNUHealth Profile Settings")
+Kirigami.Page {
+    id: phrpage
+    title: qsTr("MyGNUHealth Profile Settings")
 
     ProfileSettings { // ProfileSettings object registered at main.py
         id: profile_settings
         onSetOK: {
-            pageStack.pop() // Return to main PHR page
+            pageStack.layers.pop() // Return to main PHR page
         }
     }
 

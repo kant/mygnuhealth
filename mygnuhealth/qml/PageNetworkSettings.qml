@@ -12,7 +12,7 @@ title: qsTr("Network Settings")
     NetworkSettings { // Settings object registered at main.py
         id: network_settings
         onSetOK: {
-            pageStack.pop() // Return to main PHR page
+            pageStack.layers.pop() // Return to main PHR page
         }
     }
 

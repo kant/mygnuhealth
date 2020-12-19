@@ -289,12 +289,4 @@ title: qsTr("GNU Health - BIO")
 
     }
 
-    actions.main: Kirigami.Action {
-        text: qsTr("Logout")
-        onTriggered: {
-            // Clear the stack and go to the initial page
-            pageStack.clear()
-            pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
-        }
-    }
 }

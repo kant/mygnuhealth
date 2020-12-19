@@ -23,6 +23,8 @@ Kirigami.Page {
         id: ghlogin
         onLoginOK: {
             pageStack.replace(Qt.resolvedUrl("PagePhr.qml"))
+            // enable the global drawer menu items
+            isLoggedIn = true;
         }
         onErrorOccurred: errorMessage.visible = true
     }
