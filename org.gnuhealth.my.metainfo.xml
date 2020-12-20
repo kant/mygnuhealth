@@ -4,6 +4,7 @@
   <name>MyGNUHealth</name>
   <name xml:lang="ca">MyGNUHealth</name>
   <name xml:lang="ca-valencia">MyGNUHealth</name>
+  <name xml:lang="en-GB">MyGNUHealth</name>
   <name xml:lang="es">MyGNUHealth</name>
   <name xml:lang="nl">MyGNUHealth</name>
   <name xml:lang="nn">MyGNUHealth</name>
@@ -16,6 +17,7 @@
   <summary>GNU Health Personal Health Record</summary>
   <summary xml:lang="ca">Registre personal de salut GNU Health</summary>
   <summary xml:lang="ca-valencia">Registre personal de salut GNU Health</summary>
+  <summary xml:lang="en-GB">GNU Health Personal Health Record</summary>
   <summary xml:lang="es">Registro de salud personal de GNU</summary>
   <summary xml:lang="nl">GNU Health persoonlijk medisch document</summary>
   <summary xml:lang="nn">GNU Health personleg helsejournal</summary>
@@ -38,6 +40,7 @@
     </p>
     <p xml:lang="ca">Seguiment dels registres personals de salut.</p>
     <p xml:lang="ca-valencia">Seguiment dels registres personals de salut.</p>
+    <p xml:lang="en-GB">Tracking personal health records.</p>
     <p xml:lang="es">Seguimiento de registros de salud personal.</p>
     <p xml:lang="nl">Persoonlijke medische documenten volgen.</p>
     <p xml:lang="nn">Registrering av personlege helseopplysningar.</p>
