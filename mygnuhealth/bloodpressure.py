@@ -29,14 +29,13 @@ class BloodPressure(QObject):
         if heart_rate > 0:
             event_id = str(uuid4())
             synced = False
-            hr.insert ({'timestamp':current_date,
-                        'event_id': event_id,
-                        'synced': synced,
-                        'heart_rate':heart_rate})
+            hr.insert({'timestamp': current_date,
+                       'event_id': event_id,
+                       'synced': synced,
+                       'heart_rate': heart_rate})
 
             print("Saved Heart rate", event_id, synced,
                   heart_rate, current_date)
-
 
     @Slot(int, int, int)
     def getvals(self, *args):
