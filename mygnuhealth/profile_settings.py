@@ -20,24 +20,23 @@ class ProfileSettings(QObject):
 
     def check_new_password(self, password, password_repeat):
         rc = password == password_repeat
-        if rc:
+        if not rc:
             print("New passwords do not match")
         return rc
 
     def update_personalkey(self, password):
         encrypted_key = bcrypt.hashpw(password.encode('utf-8'),
-            bcrypt.gensalt()).decode('utf-8')
+                                      bcrypt.gensalt()).decode('utf-8')
 
         credentials = self.db.table('credentials')
-        credentials.update({'personal_key':encrypted_key})
+        credentials.update({'personal_key': encrypted_key})
 
         print("Saved personal key", encrypted_key)
 
-
     @Slot(str, str, str)
-    def getvals(self,current_password, password, password_repeat):
+    def getvals(self, current_password, password, password_repeat):
         if (self.check_current_password(current_password) and
-            self.check_new_password(password, password_repeat)):
+                self.check_new_password(password, password_repeat)):
             self.update_personalkey(password)
             self.setOK.emit()
 
