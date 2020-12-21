@@ -12,7 +12,9 @@ Installation
 ------------
 You can install MyGNUHealth via pip::
 
- $ pip3 install --user --upgrade MyGNUHealth
+ $ pip install --user --upgrade MyGNUHealth
+
+(Keep in mind some systems might have `pip3` instead of `pip`)
 
 
 Technology
