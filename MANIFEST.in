@@ -4,8 +4,8 @@ include mygnuhealth/images/*.png
 include mygnuhealth/images/*.svg
 include mygnuhealth/*.py
 
-include org.gnuhealth.my.metainfo.xml
-include org.gnuhealth.my.desktop
+include org.kde.mygnuhealth.metainfo.xml
+include org.kde.mygnuhealth.desktop
 
 include bin/mygnuhealth
 

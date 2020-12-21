@@ -51,8 +51,8 @@ setup(name=name,
     include_package_data=True,
     zip_safe=False,
     data_files = [
-        ('share/applications', ['org.gnuhealth.my.desktop']),
-        ('share/metainfo', ['org.gnuhealth.my.metainfo.xml']),
+        ('share/applications', ['org.kde.mygnuhealth.desktop']),
+        ('share/metainfo', ['org.kde.mygnuhealth.metainfo.xml']),
         ('share/icons/hicolor/scalable/apps/', ['mygnuhealth/images/mygnuhealth.svg']),
     ]
 )

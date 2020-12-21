@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="desktop-application">
-  <id>org.gnuhealth.my</id>
+  <id>org.kde.mygnuhealth</id>
   <name>MyGNUHealth</name>
   <name xml:lang="ca">MyGNUHealth</name>
   <name xml:lang="ca-valencia">MyGNUHealth</name>
@@ -51,5 +51,5 @@
     <p xml:lang="uk">Стеження за записами особистого стану здоров'я.</p>
     <p xml:lang="x-test">xxTracking personal health records.xx</p>
   </description>
-  <launchable type="desktop-id">org.gnuhealth.my.desktop</launchable>
+  <launchable type="desktop-id">org.kde.mygnuhealth.desktop</launchable>
 </component>
