@@ -13,15 +13,15 @@ name = 'MyGNUHealth'
 download_url = 'https://ftp.gnu.org/gnu/health'
 
 setup(name=name,
-    version=version,
-    description='The GNU Health Personal Health Record',
-    long_description=long_desc,
-    author='GNU Solidario',
-    author_email='info@gnuhealth.org',
-    url='https://www.gnuhealth.org',
-    download_url=download_url,
-    keywords='eHealth PHR mHealth GNUHealth',
-    classifiers=[
+      version=version,
+      description='The GNU Health Personal Health Record',
+      long_description=long_desc,
+      author='GNU Solidario',
+      author_email='info@gnuhealth.org',
+      url='https://www.gnuhealth.org',
+      download_url=download_url,
+      keywords='eHealth PHR mHealth GNUHealth',
+      classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: X11 Applications :: KDE',
         'Environment :: X11 Applications :: Qt',
@@ -37,22 +37,24 @@ setup(name=name,
         'Topic :: Scientific/Engineering :: Medical Science Apps.',
         'Natural Language :: English'
         ],
-    platforms='any',
-    scripts=['bin/mygnuhealth'],
-    license='GPL v3+',
-    python_requires='>=3.6,<4',
-    install_requires=[
+      platforms='any',
+      scripts=['bin/mygnuhealth'],
+      license='GPL v3+',
+      python_requires='>=3.6,<4',
+      install_requires=[
         'PySide2',
         'matplotlib',
-        "tinydb",
+        'requests',
+        'tinydb',
         'bcrypt'
         ],
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
-    data_files = [
+      packages=find_packages(),
+      include_package_data=True,
+      zip_safe=False,
+      data_files=[
         ('share/applications', ['org.kde.mygnuhealth.desktop']),
         ('share/metainfo', ['org.kde.mygnuhealth.metainfo.xml']),
-        ('share/icons/hicolor/scalable/apps/', ['mygnuhealth/images/mygnuhealth.svg']),
-    ]
-)
+        ('share/icons/hicolor/scalable/apps/',
+         ['mygnuhealth/images/mygnuhealth.svg']),
+        ]
+      )
