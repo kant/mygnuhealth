@@ -23,7 +23,6 @@ class Weight(QObject):
 
             print("Saved weight", event_id, synced, body_weight, current_date)
 
-
     @Slot(float)
     def getvals(self, body_weight):
         self.insert_values(body_weight)

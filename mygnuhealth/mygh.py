@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    MyGNUHealth : Mobile and Desktop PHR node for GNU Health
@@ -37,15 +36,15 @@ from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from mygnuhealth.myghconf import verify_installation_status
 
 
-#Common methods
-#Use this method to be compatible with Python 3.6
+# Common methods
+# Use this method to be compatible with Python 3.6
 # datetime fromisoformat is not present until Python 3.7
 def datefromisotz(isotz):
     if isotz:
         return dateutil.parser.parse(isotz)
 
+
 def main():
-    
     # Initial installation check
     if (verify_installation_status()):
         from mygnuhealth.profile_settings import ProfileSettings
