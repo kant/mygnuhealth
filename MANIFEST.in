@@ -14,6 +14,5 @@ include mygnuhealth/qml/*.qml
 include MANIFEST.in
 include LICENSE
 include COPYRIGHT
-include version
 
 global-exclude *.pyc
