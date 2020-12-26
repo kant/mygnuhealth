@@ -30,6 +30,8 @@ __team__ = [
      "tasks": "Kirigami, packaging"},
     {"name": "Cristian Maureira", "email": "Cristian.Maureira-Fredes@qt.io",
      "tasks": "PySide"},
+    {"name": "Axel Braun", "email": "axel.braun@gnuhealth.org",
+     "tasks": "Packaging"},
     ]
 
 __license__ = "GPL v3+"
