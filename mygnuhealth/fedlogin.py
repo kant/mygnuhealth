@@ -1,8 +1,8 @@
 import requests
 
 
-def test_federation_connection(protocol,host, port, acct, passwd):
-    """ 
+def test_federation_connection(protocol, host, port, acct, passwd):
+    """
     Make the connection test to Thalamus Server
     from the GNU Health HMIS using the institution
     associated admin and the related credentials
@@ -15,14 +15,14 @@ def test_federation_connection(protocol,host, port, acct, passwd):
         conn = requests.get(url, auth=(acct, passwd), verify=False)
 
     except Exception as e:
-        print (f"ERROR authenticating to Server: {e}")
+        print(f"ERROR authenticating to Server: {e}")
         login_status = -2
 
     if conn:
-        print ("***** Connection to Thalamus Server OK !******")
+        print("***** Connection to Thalamus Server OK !******")
         login_status = 0
     else:
-        print ("##### Wrong credentials ####")
+        print("##### Wrong credentials ####")
         login_status = -1
 
     print(login_status)

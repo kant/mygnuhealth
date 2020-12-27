@@ -38,6 +38,7 @@ config_file = os.path.join(gh_dir, 'ghealth.conf')
 dbfile = os.path.join(gh_dir, 'ghealth.db')
 GH_KEY = "mygh"
 
+
 def check_inst_dir():
     if os.path.isdir(gh_dir):
         print("Directory exists... skipping")

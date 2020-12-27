@@ -67,7 +67,6 @@ def main():
     qmlRegisterType(NetworkSettings, "NetworkSettings", 0, 1,
                     "NetworkSettings")
 
-
     # Register BloodPressure to use in QML
     qmlRegisterType(BloodPressure, "BloodPressure", 0, 1,
                     "BloodPressure")
@@ -91,6 +90,10 @@ def main():
     # Register GHBio to use in QML
     qmlRegisterType(GHBio, "GHBio", 0, 1,
                     "GHBio")
+
+    # Register GHPol to use in QML
+    # qmlRegisterType(GHPol, "GHPol", 0, 1,
+    #                "GHPol")
 
     engine = QQmlApplicationEngine()
 

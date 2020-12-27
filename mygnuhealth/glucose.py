@@ -4,6 +4,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
 
+
 class Glucose(QObject):
 
     db = TinyDB(dbfile)
@@ -20,9 +21,8 @@ class Glucose(QObject):
                             'synced': synced,
                             'glucose': blood_glucose})
 
-            print ("Saved glucose",event_id, synced,blood_glucose,
-                   current_date)
-
+            print("Saved glucose", event_id, synced, blood_glucose,
+                  current_date)
 
     @Slot(int)
     def getvals(self, blood_glucose):

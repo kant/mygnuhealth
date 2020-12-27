@@ -21,11 +21,10 @@ class Osat(QObject):
                          'synced': synced,
                          'osat': hb_osat})
 
-            print ("Saved osat",event_id, synced, hb_osat, current_date)
+            print("Saved osat", event_id, synced, hb_osat, current_date)
 
-
-    @Slot (int)
-    def getvals(self,hb_osat):
+    @Slot(int)
+    def getvals(self, hb_osat):
         self.insert_values(hb_osat)
         self.setOK.emit()
 

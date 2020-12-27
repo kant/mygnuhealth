@@ -36,18 +36,18 @@ class GHBio(QObject):
         # Extracts the latest readings from BP
         bphist = self.read_bp()
         hrhist = self.read_hr()
-        bpobj = ['', '', '', ''] # Initialize to empty string to avoid undefined vals
-        if bphist and hrhist: 
+        bpobj = ['', '', '', '']  # Init to empty string to avoid undefined val
+        if bphist and hrhist:
             bp = bphist[-1]  # Get the latest (newest) record
             hr = hrhist[-1]
 
-            #dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
-            dateobj =  datefromisotz(bp['timestamp'])
+            # dateobj =  datetime.datetime.fromisoformat(bp['timestamp'])
+            dateobj = datefromisotz(bp['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             bpobj = [str(date_repr), str(bp['systolic']), str(bp['diastolic']),
-                                        str(hr['heart_rate'])]
-        
+                     str(hr['heart_rate'])]
+
         return bpobj
 
     def getBPHist(self):
@@ -71,17 +71,16 @@ class GHBio(QObject):
 
         return bphrhist
 
-
     def BPplot(self):
         # Retrieves all the history and packages into an array.
         bphist = self.read_bp()
         bpsys = []
         bpdia = []
         bp_date = []
-        lastreading=''
+        lastreading = ''
         for element in bphist:
 
-            dateobj =  datefromisotz(element['timestamp'])
+            dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
@@ -94,7 +93,7 @@ class GHBio(QObject):
 
         fig, axs = plt.subplots(2)
 
-        #Plot both systolic and diastolic history
+        # Plot both systolic and diastolic history
         axs[0].plot(bp_date, bpsys)
         axs[1].plot(bp_date, bpdia, color='teal')
 
@@ -111,15 +110,14 @@ class GHBio(QObject):
         holder.close()
         return image
 
-
     def HRplot(self):
         # Retrieves all the history and packages into an array.
         hrhist = self.read_hr()
         hr = []
-        hr_date= []
-        lastreading=''
+        hr_date = []
+        lastreading = ''
         for element in hrhist:
-            dateobj =  datefromisotz(element['timestamp'])
+            dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
             if (lastreading != date_repr):
@@ -145,12 +143,10 @@ class GHBio(QObject):
         holder.close()
         return image
 
-
     def setBP(self, bp):
         self.current_bp = bp
         # Call the notifying signal
         self.bpChanged.emit()
-
 
     # GLUCOSE
     def setGlucose(self, glucose):
@@ -158,21 +154,19 @@ class GHBio(QObject):
         # Call the notifying signal
         self.glucoseChanged.emit()
 
-
     def read_glucose(self):
-        #Retrieve the blood glucose levels history
+        # Retrieve the blood glucose levels history
         glucose = self.db.table('glucose')
         glucosehist = glucose.all()
         return glucosehist
-
 
     def getGlucose(self):
         # Extracts the latest readings from Glucose
         glucosehist = self.read_glucose()
         glucoseobj = ['', '']
-        if (glucosehist): # Enter this block if there is a history
+        if (glucosehist):  # Enter this block if there is a history
             glucose = glucosehist[-1]  # Get the latest (newest) record
-            dateobj =  datefromisotz(glucose['timestamp'])
+            dateobj = datefromisotz(glucose['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             glucoseobj = [str(date_repr), str(glucose['glucose'])]
@@ -190,26 +184,24 @@ class GHBio(QObject):
         # Retrieves all the history and packages into an array.
         glucosehist = self.read_glucose()
         glucose = []
-        glucose_date= []
-        lastreading=''
+        glucose_date = []
+        lastreading = ''
         for element in glucosehist:
-            dateobj =  datefromisotz(element['timestamp'])
+            dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            #if (lastreading != date_repr):
+            # if (lastreading != date_repr):
             glucose_date.append(dateobj)
             glucose.append(element['glucose'])
-
-            #lastreading = date_repr
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
         ax.plot(glucose_date, glucose, color="red")
 
-        ax.set_ylabel('mg/dl',size=13)
+        ax.set_ylabel('mg/dl', size=13)
         fig.autofmt_xdate()
-        fig.suptitle("Glucose level (mg/dl)",size=20)
+        fig.suptitle("Glucose level (mg/dl)", size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
@@ -226,11 +218,10 @@ class GHBio(QObject):
         self.weightChanged.emit()
 
     def read_weight(self):
-        #Retrieve the blood weight levels history
+        # Retrieve the weight levels history
         weight = self.db.table('weight')
         weighthist = weight.all()
         return (weighthist)
-
 
     def getWeight(self):
         # Extracts the latest readings from Weight
@@ -239,8 +230,8 @@ class GHBio(QObject):
         if (weighthist):
             weight = weighthist[-1]  # Get the latest (newest) record
 
-            #dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
-            dateobj =  datefromisotz(weight['timestamp'])
+            # dateobj =  datetime.datetime.fromisoformat(weight['timestamp'])
+            dateobj = datefromisotz(weight['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             weightobj = [str(date_repr), str(weight['weight'])]
@@ -259,27 +250,25 @@ class GHBio(QObject):
         # Retrieves all the history and packages into an array.
         weighthist = self.read_weight()
         weight = []
-        weight_date= []
-        lastreading=''
+        weight_date = []
+        lastreading = ''
         for element in weighthist:
-            #dateobj =  datetime.datetime.fromisoformat(element['timestamp'])
-            dateobj =  datefromisotz(element['timestamp'])
+            # dateobj = datetime.datetime.fromisoformat(element['timestamp'])
+            dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            #if (lastreading != date_repr):
+            # if (lastreading != date_repr):
             weight_date.append(dateobj)
             weight.append(element['weight'])
-
-            #lastreading = date_repr
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
         ax.plot(weight_date, weight, color="blue")
 
-        ax.set_ylabel('kg',size=13)
+        ax.set_ylabel('kg', size=13)
         fig.autofmt_xdate()
-        fig.suptitle("Weight (kg)",size=20)
+        fig.suptitle("Weight (kg)", size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
@@ -289,7 +278,6 @@ class GHBio(QObject):
         holder.close()
         return (image)
 
-
     # OSAT
     def setOsat(self, osat):
         self.current_osat = osat
@@ -297,11 +285,10 @@ class GHBio(QObject):
         self.osatChanged.emit()
 
     def read_osat(self):
-        #Retrieve the blood osat levels history
+        # Retrieve the blood osat levels history
         osat = self.db.table('osat')
         osathist = osat.all()
         return osathist
-
 
     def getOsat(self):
         # Extracts the latest readings from Osat
@@ -310,8 +297,8 @@ class GHBio(QObject):
         if (osathist):
             osat = osathist[-1]  # Get the latest (newest) record
 
-            #dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
-            dateobj =  datefromisotz(osat['timestamp'])
+            # dateobj =  datetime.datetime.fromisoformat(osat['timestamp'])
+            dateobj = datefromisotz(osat['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
             osatobj = [str(date_repr), str(osat['osat'])]
         return osatobj
@@ -329,10 +316,10 @@ class GHBio(QObject):
         # Retrieves all the history and packages into an array.
         osathist = self.read_osat()
         osat = []
-        osat_date= []
-        lastreading=''
+        osat_date = []
+        lastreading = ''
         for element in osathist:
-            dateobj =  datefromisotz(element['timestamp'])
+            dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             osat_date.append(dateobj)
             osat.append(element['osat'])
@@ -342,9 +329,9 @@ class GHBio(QObject):
 
         ax.plot(osat_date, osat, color="red")
 
-        ax.set_ylabel('%',size=13)
+        ax.set_ylabel('%', size=13)
         fig.autofmt_xdate()
-        fig.suptitle("Osat (%)",size=20)
+        fig.suptitle("Osat (%)", size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
@@ -354,9 +341,7 @@ class GHBio(QObject):
         holder.close()
         return (image)
 
-
     # PROPERTIES BLOCK
-
     # Notifying signal - to be used in qml as "onBPChanged"
     bpChanged = Signal()
 
@@ -373,18 +358,17 @@ class GHBio(QObject):
     # Blood pressure monitor readings.
     hrplot = Property(str, HRplot, setBP, notify=bpChanged)
 
-
     # Notifying signal - to be used in qml as "onGlucoseChanged"
     glucoseChanged = Signal()
 
     # Glucose property to be accessed to and from QML and Python.
     # It is used in the context of showing the BP last results
     # in the main bio screen.
-    glucose = Property("QVariantList", getGlucose, setGlucose, notify=glucoseChanged)
+    glucose = Property("QVariantList", getGlucose, setGlucose,
+                       notify=glucoseChanged)
 
     # Property to retrieve the plot of the blood glucose level.
     glucoseplot = Property(str, Glucoseplot, setGlucose, notify=bpChanged)
-
 
     # Notifying signal - to be used in qml as "onWeightChanged"
     weightChanged = Signal()
@@ -392,11 +376,11 @@ class GHBio(QObject):
     # Weight property to be accessed to and from QML and Python.
     # It is used in the context of showing the BP last results
     # in the main bio screen.
-    weight = Property("QVariantList", getWeight, setWeight, notify=weightChanged)
+    weight = Property("QVariantList", getWeight, setWeight,
+                      notify=weightChanged)
 
     # Property to retrieve the plot of the blood weight level.
     weightplot = Property(str, Weightplot, setWeight, notify=bpChanged)
-
 
     # Notifying signal - to be used in qml as "onOsatChanged"
     osatChanged = Signal()
