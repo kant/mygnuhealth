@@ -23,13 +23,15 @@ __download_url__ = 'https://ftp.gnu.org/gnu/health'
 
 __team__ = [
     {"name": "Luis Falcon", "email": "falcon@gnuhealth.org",
-     "tasks": "Original author and developer"},
+     "tasks": "Author and project leader"},
+    {"name": "Leonardo D'Acchille", "email": "ldacchille@thymbra.com",
+     "tasks": "Artwork"},
     {"name": "Carl Schwan", "email": "carlschwan@kde.org",
      "tasks": "Kirigami, QML"},
     {"name": "Aleix Pol", "email": "aleixpol@kde.org",
      "tasks": "Kirigami, packaging"},
-    {"name": "Cristian Maureira", "email": "Cristian.Maureira-Fredes@qt.io",
-     "tasks": "PySide"},
+    {"name": "Cristian Maureira-Fredes",
+     "email": "Cristian.Maureira-Fredes@qt.io", "tasks": "PySide"},
     {"name": "Axel Braun", "email": "axel.braun@gnuhealth.org",
      "tasks": "Packaging"},
     ]
