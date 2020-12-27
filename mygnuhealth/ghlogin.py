@@ -4,6 +4,7 @@ from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import get_personal_key
 
+
 class GHLogin(QObject):
 
     db = TinyDB(dbfile)
@@ -20,7 +21,6 @@ class GHLogin(QObject):
             self.loginOK.emit()
         else:
             self.errorOccurred.emit()
-
 
     # Signal to emit to QML if the provided credentials are correct
     loginOK = Signal()

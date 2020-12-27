@@ -21,13 +21,13 @@ class GHBio(QObject):
     db = TinyDB(dbfile)
 
     def read_bp(self):
-        #Retrieve the BP history
+        # Retrieve the BP history
         blood_pressure = self.db.table('bloodpressure')
         bphist = blood_pressure.all()
         return bphist
 
     def read_hr(self):
-        #Retrieve the HR history
+        # Retrieve the HR history
         hr = self.db.table('heart_rate')
         hrhist = hr.all()
         return (hrhist)
