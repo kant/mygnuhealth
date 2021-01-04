@@ -29,7 +29,7 @@ Kirigami.ScrollablePage
             }
         }
         Rectangle {
-            id:psychorectangle
+            id:bolrectangle
             color: "#108498"
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
@@ -38,17 +38,15 @@ Kirigami.ScrollablePage
             radius: 10
 
             Image {
-                id: psychoIcon
+                id: bolIcon
                 anchors.fill: parent
                 source: "../images/book_of_life-icon.svg"
                 fillMode:Image.PreserveAspectFit
             }
-            /*
             MouseArea {
             anchors.fill: parent
-            onClicked: pageStack.push(Qt.resolvedUrl("PageBoL.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageBol.qml"))
             }
-            */
         }
 
         Rectangle {
