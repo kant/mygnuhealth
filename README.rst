@@ -30,7 +30,7 @@ Development
 
 The development of MyGNUHealth resides now on **KDE**
 
-Tasks, bugs and mailing lists will be on health-dev@gnu.org , for development.
+Tasks, bugs and mailing lists will be on health-dev@gnu.org, for development.
 
 General discussion is done at health@gnu.org mailing list.
 
@@ -87,7 +87,7 @@ your NGO or government:
 * An introduction of the current needs
 * The project will only use Libre software technology
 * There will be a local designated person that will be in charge of  the project 
-  and the know-how transfer to the rest of the community.This person must be 
+  and the know-how transfer to the rest of the community. This person must be 
   committed to be from the beginning of the project until two years after its
   completion.
 * There must be a commitment of knowledge transfer to the rest of the team.
@@ -95,7 +95,7 @@ your NGO or government:
 We will do our best to help you out with the implementation and training
 for the local team, to build local capacity and make your project sustainable.
 
-Please contect us and we'll back to you as soon as possible::
+Please contact us and we'll back to you as soon as possible::
 
  Dr. Luis Falcón, MD, MSc
  Author and project leader
