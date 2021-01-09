@@ -67,8 +67,8 @@ Signing in to MyGNUHealth
 -------------------------
 |LoginScreen|
 
-The first time you use the application, the initial key is *mygh*
-(no quotes).
+The first time you use the application, the initial key is *mygh*.
+
 
 
 .. Note:: For security reasons, you're strongly adviced to change the personal
